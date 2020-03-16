@@ -1,10 +1,19 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <locale.h>
+#include <unistd.h>
+#include <pwd.h>
+#include <limits.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
 
 #include "history.h"
 #include "logger.h"
 #include "ui.h"
+#include "next_token.h"
+
 
 /* -- Private function forward declarations -- */
 static int readline_init(void);
@@ -13,11 +22,28 @@ static int key_down(int count, int key);
 static char **command_completion(const char *text, int start, int end);
 static char *command_generator(const char *text, int state);
 
-static char prompt_str1[80] = "--[enter a command]--";
+
+
+
+
+// static char prompt_str1[80] = "--[enter a command]--";
 static char prompt_str2[80] = "-> ";
+int mycount = 0;
+char* status = "🐉";
+
+bool script;
+
+
+
 
 void init_ui(void)
 {
+    // if(isatty(fileno(stdin))){
+    //     script = false;
+    // }else{
+    //     script = true;
+    // }
+
     LOGP("Initializing UI...\n");
 
     char *locale = setlocale(LC_ALL, "en_US.UTF-8");
@@ -25,20 +51,79 @@ void init_ui(void)
             (locale != NULL) ? locale : "could not set locale!");
 
     rl_startup_hook = readline_init;
+
+}
+
+char* set_status(int s){
+    if(s != 0){
+        status = "🖕";
+    }else{
+        status = "🐉";
+    }
+    return status;
 }
 
 char *prompt_line1(void) {
-    return prompt_str1;
+    
+    struct passwd *pwd;
+
+    uid_t uid = getuid();
+    pwd = getpwuid(uid);
+
+    char *temp = (char*)malloc(8196 * sizeof(char));
+
+    char hostbuffer[256];
+    gethostname(hostbuffer, sizeof(hostbuffer));
+ 
+    char cwd[PATH_MAX];
+    getcwd(cwd, sizeof(cwd));
+
+    if(strstr(cwd, "/home/jnhamid") == cwd){
+        sprintf(cwd, replaceWord(cwd, "/home/jnhamid", "~"));
+    }
+    // if(script){
+
+    sprintf(temp, "-[%s]-[%d]-[%s@%s:%s]--", status, getCount(), pwd -> pw_name, hostbuffer, cwd);
+    // }
+    return temp;
+
 }
 
 char *prompt_line2(void) {
-    return prompt_str2;
+    // if(script){
+        return prompt_str2;
+
+    // }
+    // return NULL;
 }
 
 char *read_command(void)
 {
-    puts(prompt_line1());
-    return readline(prompt_line2());
+    if (isatty(STDIN_FILENO)) {
+        char* promptLine = prompt_line1();
+        puts(promptLine);
+        free(promptLine);
+        return readline(prompt_line2());
+    }
+    else {
+        size_t line_sz = 100;
+        char* line = malloc(100 * sizeof(char));
+        ssize_t read = getline(&line, &line_sz, stdin);
+
+        if (read == -1) {
+            LOGP("Reached end of input stream. \n");
+            free(line);
+            return NULL;
+        }
+         if (line == NULL || strcmp(line, "") == 0) {
+            free(line);
+            return NULL;
+        }
+
+        size_t newline = strcspn(line, "\n");
+        line[newline] = '\0';
+        return line;
+    }
 }
 
 int readline_init(void)
