@@ -26,11 +26,19 @@ void sigint_handler(int signo){
     }
 }
 
+void sigchild_handler(int signo){
+    int status;
+    waitpid(-1, &status, WNOHANG);
+    set_status(status);
+}
+
 int main(void)
 {
     init_ui();
     hist_init(100);
     signal(SIGINT, sigint_handler);
+    signal(SIGCHLD, sigchild_handler);
+
 
     char *command;
    

@@ -54,6 +54,10 @@ int exit_program(int argc, char *argv[]){
 	return 1;
 }
 
+int history_execution(int argc, char *argv[]){
+	LOG("%s\n", argv[0]);
+}
+
 
 
 
@@ -63,9 +67,9 @@ int handle_builtin(int argc, char *argv[]){
 		LOGP("Arg is null");
 		return 1;
 	}
-	// if(argv[0] == "!"){
-	// 	// return history_execution(argc, argv);
-	// }
+	if(argv[0] == "!"){
+		return history_execution(argc, argv);
+	}
 	for(int i = 0; i< sizeof(builtins)/sizeof(struct builtin_def); ++i){
 		if(strcmp(argv[0], builtins[i].name) == 0){
 			return builtins[i].function(argc, argv);

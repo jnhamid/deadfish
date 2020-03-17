@@ -38,11 +38,6 @@ bool script;
 
 void init_ui(void)
 {
-    // if(isatty(fileno(stdin))){
-    //     script = false;
-    // }else{
-    //     script = true;
-    // }
 
     LOGP("Initializing UI...\n");
 

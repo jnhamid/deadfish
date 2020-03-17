@@ -82,6 +82,37 @@ const char *hist_search_prefix(char *prefix)
 {
     // TODO: Retrieves the most recent command starting with 'prefix', or NULL
     // if no match found.
+    int i;
+    if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
+        for(i= histStruct.tail; i >= 0; i--){
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                return histStruct.commands[i].realCommand;
+            }
+        }
+    }else if(histStruct.tail%histStruct.limit == 0){
+        if(strncmp(prefix, histStruct.commands[0].realCommand, strlen(prefix)) == 0){
+            return histStruct.commands[0].realCommand;
+        }else{
+            for(i = histStruct.limit-1; i >= 0; i--){
+                if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                    return histStruct.commands[i].realCommand;
+                }
+            }
+        }
+
+    }else{
+        for(i = histStruct.tail%histStruct.limit; i >= 0; i--){
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                return histStruct.commands[i].realCommand;
+            }
+        }
+        for (i = histStruct.limit -1 ; i >= histStruct.head; i--)
+        {
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                return histStruct.commands[i].realCommand;
+            }
+        }
+    }
     return NULL;
 }
 
@@ -89,11 +120,42 @@ const char *hist_search_cnum(int command_number)
 {
     // TODO: Retrieves a particular command number. Return NULL if no match
     // found.
+    int i;
+    if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
+        for(i= histStruct.tail; i >= 0; i--){
+            if(histStruct.commands[i].cmdID == command_number){
+                return histStruct.commands[i].realCommand;
+            }
+            
+        }
+    }else if(histStruct.tail%histStruct.limit == 0){
+        if(histStruct.commands[0].cmdID == command_number){
+            return histStruct.commands[0].realCommand;
+        }else{
+            for(i = histStruct.limit-1; i >= 0; i--){
+            if(histStruct.commands[i].cmdID == command_number){
+                return histStruct.commands[i].realCommand;
+                }
+            }
+        }
+
+    }else{
+        for(i = histStruct.tail%histStruct.limit; i >= 0; i--){
+            if(histStruct.commands[i].cmdID == command_number){
+                return histStruct.commands[i].realCommand;
+            }
+        }
+        for (i = histStruct.limit -1 ; i >= histStruct.head; i--){
+            if(histStruct.commands[i].cmdID == command_number){
+                return histStruct.commands[i].realCommand;
+            }
+        }
+    }
     return NULL;
 }
 
 unsigned int hist_last_cnum(void)
 {
     // TODO: Retrieve the most recent command number.
-    return 0;
+    return histStruct.commands[histStruct.tail%histStruct.limit].cmdID;
 }
