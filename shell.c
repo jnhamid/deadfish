@@ -27,15 +27,22 @@ void sigint_handler(int signo){
 }
 
 void sigchild_handler(int signo){
-    int status;
-    waitpid(-1, &status, WNOHANG);
-    set_status(status);
+    // int status;
+    // pid_t pid;
+    // waitpid(-1, &status, WNOHANG);
+
+    // while(pid != 0 &&  pid != -1){
+
+    // }
+
+    // //while 
+    // set_status(status);
 }
 
 int main(void)
 {
     init_ui();
-    hist_init(100);
+    hist_init(5);
     signal(SIGINT, sigint_handler);
     signal(SIGCHLD, sigchild_handler);
 
@@ -60,6 +67,8 @@ int main(void)
 
             continue;
         }
+
+        LOG("%s\n", command);
 
         char *duppedCMD = strdup(command);
 
@@ -92,6 +101,14 @@ int main(void)
         if(arg_counter == 0){
             continue;
         }
+        // if(strncmp((cmd[arg_counter -1]), "&", 1) == 0) {
+        //     cmd[arg_counter -1] = "\0";
+        //     LOG("%s\n", cmd[0]);
+        //     LOG("%s\n", cmd[1]);
+        //     LOG("%s\n", cmd[2]);
+
+
+        // }
         if ((strcmp(cmd[0], "cd")==0) || (strcmp(cmd[0], "exit")==0) || (strcmp(cmd[0], "jobs")==0) || (strstr(cmd[0], "!"))){
             int n = handle_builtin(*cmd[0], cmd);
 

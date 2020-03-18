@@ -80,49 +80,59 @@ int getCount(void){
 
 char *hist_search_prefix(char *prefix)
 {   
-    // LOG("%s\n", prefix);
-    for (int i =  histStruct.tail; i < getCount(); i--)
-    {
-        if (strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0)
-        {   
+    LOG("%s\n", prefix);
+    LOG("%d\n", histStruct.tail);
+    LOG("%d\n", getCount());
 
-            LOG("%s\n", histStruct.commands[i].realCommand);
-            return strdup(histStruct.commands[i].realCommand);
-        }
-    }
-    // TODO: Retrieves the most recent command starting with 'prefix', or NULL
-    // if no match found.
-    // int i;
-    // if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
-    //     for(i= histStruct.tail; i >= 0; i--){
-    //         if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
-    //             return histStruct.commands[i].realCommand;
-    //         }
-    //     }
-    // }else if(histStruct.tail%histStruct.limit == 0){
-    //     if(strncmp(prefix, histStruct.commands[0].realCommand, strlen(prefix)) == 0){
-    //         return histStruct.commands[0].realCommand;
-    //     }else{
-    //         for(i = histStruct.limit-1; i >= 0; i--){
-    //             if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
-    //                 return histStruct.commands[i].realCommand;
-    //             }
-    //         }
-    //     }
 
-    // }else{
-    //     for(i = histStruct.tail%histStruct.limit; i >= 0; i--){
-    //         if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
-    //             return histStruct.commands[i].realCommand;
-    //         }
-    //     }
-    //     for (i = histStruct.limit -1 ; i >= histStruct.head; i--)
-    //     {
-    //         if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
-    //             return histStruct.commands[i].realCommand;
-    //         }
+    // for (int i =  histStruct.tail%limit-1; i > 0; i--)
+    // {   
+    //     LOG("%d\n", i);
+
+    //     LOG("%s\n", histStruct.commands[i].realCommand);
+    //     if (strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0)
+    //     {   
+
+    //         LOG("%s\n", histStruct.commands[i].realCommand);
+    //         return strdup(histStruct.commands[i].realCommand);
     //     }
     // }
+    // TODO: Retrieves the most recent command starting with 'prefix', or NULL
+    // if no match found.
+    int i;
+    if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
+        for(i= histStruct.tail -1; i >= 0; i--){
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                return strdup(histStruct.commands[i].realCommand);
+            }
+        }
+    }else if(histStruct.tail%histStruct.limit == 0){
+        if(strncmp(prefix, histStruct.commands[0].realCommand, strlen(prefix)) == 0){
+            return strdup(histStruct.commands[0].realCommand);
+
+        }else{
+            for(i = histStruct.limit; i >= 0; i--){
+                if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                    return strdup(histStruct.commands[i].realCommand);
+
+                }
+            }
+        }
+
+    }else{
+        for(i = (histStruct.tail-1) %histStruct.limit; i >= 0; i--){
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                return strdup(histStruct.commands[i].realCommand);
+            }
+        }
+        for (i = histStruct.limit -1 ; i >= histStruct.head; i--)
+        {
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                return strdup(histStruct.commands[i].realCommand);
+
+            }
+        }
+    }
     return NULL;
 }
 

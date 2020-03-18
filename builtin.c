@@ -71,12 +71,19 @@ char *history_execution(int argc, char *argv[]){
 		cmd = hist_search_cnum(atoi(command));
 
 		LOG("%s\n", cmd);
+
+		if(cmd == NULL){
+
+		return NULL;
+	}	
 		char* dupp = strdup(cmd);
 		execute(dupp);
+
 		LOG("%s\n", cmd);
 
-
+		
 		return cmd;
+		
 
 		
 	}else if(strcmp(command, "!") == 0){
