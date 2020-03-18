@@ -22,7 +22,7 @@ libshell.so: $(obj)
 shell.o: shell.c history.h logger.h ui.h next_token.h builtin.h pipe.h
 history.o: history.c history.h logger.h
 ui.o: ui.h ui.c logger.h history.h next_token.h builtin.h
-builtin.o: builtin.c history.h 
+builtin.o: builtin.c history.h next_token.h
 pipe.o: pipe.c next_token.h logger.h pipe.h ui.h
 clean:
 	rm -f $(bin) $(obj) libshell.so vgcore.*

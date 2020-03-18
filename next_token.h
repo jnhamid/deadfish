@@ -2,5 +2,6 @@
 #define _NEXT_TOKEN_H_
 char *next_token(char **, const char *);
 char *replaceWord(const char *, const char *, const char*);
+void execute(char* command);
 
 #endif

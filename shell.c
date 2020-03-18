@@ -50,7 +50,7 @@ int main(void)
         char *cmd[4096] = {0}; 
         int arg_counter = 0;
 
-        next_tok = command = read_command();
+       next_tok = command = read_command();
 
 
         if(command == NULL){
@@ -62,7 +62,6 @@ int main(void)
         }
 
         char *duppedCMD = strdup(command);
-        hist_add(duppedCMD);
 
         if(strstr(duppedCMD, " | ") != NULL || strstr(duppedCMD, " > ") != NULL){
             tokenize(command);
@@ -93,13 +92,25 @@ int main(void)
         if(arg_counter == 0){
             continue;
         }
-        if ((strcmp(cmd[0], "cd")==0) || (strcmp(cmd[0], "exit")==0) || (strcmp(cmd[0], "history")==0) || (strcmp(cmd[0], "jobs")==0) || (strcmp(command, "!")==0)){
+        if ((strcmp(cmd[0], "cd")==0) || (strcmp(cmd[0], "exit")==0) || (strcmp(cmd[0], "jobs")==0) || (strstr(cmd[0], "!"))){
             int n = handle_builtin(*cmd[0], cmd);
 
             if(n == -1){
                 perror("builtin commands");
             }
         }
+        if(strncmp(duppedCMD, "!", 1) != 0){
+           hist_add(duppedCMD); 
+        }
+
+        if(strcmp(cmd[0], "history")==0){
+            int n = handle_builtin(*cmd[0], cmd);
+
+            if(n == -1){
+                perror("builtin commands");
+            }
+        }
+
 
     cmd[arg_counter +1 ] = "\0";
     pid_t child = fork();
@@ -125,9 +136,8 @@ int main(void)
         waitpid(child, &status, 0);
         set_status(status);
 
-
-
         }
+    
         free(command);
         free(duppedCMD);
         fflush(stdout);

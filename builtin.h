@@ -6,6 +6,9 @@ struct builtin_def{
 	int (*function)(int argc, char *argv[]);
 };
 
+char* history_execution(int argc, char *argv[]);
+
+
 int handle_builtin(int argc, char *argv[]);
 
 #endif
