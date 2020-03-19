@@ -16,6 +16,10 @@
 #include "builtin.h"
 #include "pipe.h"
 
+
+bool background = false;
+
+
 void sigint_handler(int signo){
     if(isatty(fileno(stdin))){
         printf("\n");
@@ -26,18 +30,19 @@ void sigint_handler(int signo){
     }
 }
 
-void sigchild_handler(int signo){
-    // int status;
-    // pid_t pid;
-    // waitpid(-1, &status, WNOHANG);
+// void sigchild_handler(int signo){
+//     if(background){
+//     int status;
+//     pid_t pid;
+//     pid = waitpid(-1, &status, WNOHANG);
 
-    // while(pid != 0 &&  pid != -1){
+//     while(pid != 0 &&  pid != -1){
+        
+//         }
+//     }
 
-    // }
 
-    // //while 
-    // set_status(status);
-}
+// }
 
 int main(void)
 {
@@ -56,8 +61,8 @@ int main(void)
         char *next_tok;
         char *cmd[4096] = {0}; 
         int arg_counter = 0;
-
-       next_tok = command = read_command();
+        // bool background = false;
+        next_tok = command = read_command();
 
 
         if(command == NULL){
@@ -100,13 +105,14 @@ int main(void)
         
         if(arg_counter == 0){
             continue;
-        }
+        // }
         // if(strncmp((cmd[arg_counter -1]), "&", 1) == 0) {
+        //     LOG("%s\n", *cmd);
+        //     background = true;
         //     cmd[arg_counter -1] = "\0";
-        //     LOG("%s\n", cmd[0]);
-        //     LOG("%s\n", cmd[1]);
-        //     LOG("%s\n", cmd[2]);
+        //     LOG("%s\n", *cmd);
 
+           
 
         // }
         if ((strcmp(cmd[0], "cd")==0) || (strcmp(cmd[0], "exit")==0) || (strcmp(cmd[0], "jobs")==0) || (strstr(cmd[0], "!"))){
@@ -135,7 +141,7 @@ int main(void)
         
         execvp(cmd[0], cmd);
         
-            LOG("Input command: %s\n", duppedCMD);
+        LOG("Input command: %s\n", duppedCMD);
 
         close(fileno(stdin));
         close(fileno(stdout));
@@ -146,18 +152,18 @@ int main(void)
         free(command);
         free(duppedCMD);
         perror("fork");
-    } else {
-
-
-        int status;
-        waitpid(child, &status, 0);
-        set_status(status);
-
+    }else 
+    {
+        if(!background){
+            int status;
+            waitpid(child, &status, 0);
+            set_status(status);
         }
-    
-        free(command);
-        free(duppedCMD);
-        fflush(stdout);
+    }
+
+    free(command);
+    free(duppedCMD);
+    fflush(stdout);
     }
 
     return 0;

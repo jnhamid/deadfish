@@ -43,6 +43,7 @@ void hist_add(const char *cmd)
     }else{
         int index = histStruct.tail++ % histStruct.limit; 
         histStruct.head++;
+        histStruct.head %= histStruct.limit;
         histStruct.commands[index].realCommand = strdup(cmd);
         histStruct.commands[index].cmdID = mymotherfuckingcount;
         mymotherfuckingcount++;
@@ -62,6 +63,10 @@ void hist_print(void)
             printf("%u %s\n", histStruct.commands[i].cmdID, histStruct.commands[i].realCommand);
         }
     }else{
+        LOG("%d\n",histStruct.head);
+        LOG("%d\n",histStruct.tail%histStruct.limit);
+
+
         int j;
         for(i = histStruct.head; i < histStruct.limit ; i++){
             printf("%u %s\n", histStruct.commands[i].cmdID, histStruct.commands[i].realCommand);
@@ -106,18 +111,18 @@ char *hist_search_prefix(char *prefix)
                 return strdup(histStruct.commands[i].realCommand);
             }
         }
-    }else if(histStruct.tail%histStruct.limit == 0){
-        if(strncmp(prefix, histStruct.commands[0].realCommand, strlen(prefix)) == 0){
-            return strdup(histStruct.commands[0].realCommand);
+    // }else if(histStruct.tail%histStruct.limit == 0){
+    //     if(strncmp(prefix, histStruct.commands[0].realCommand, strlen(prefix)) == 0){
+    //         return strdup(histStruct.commands[0].realCommand);
 
-        }else{
-            for(i = histStruct.limit; i >= 0; i--){
-                if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
-                    return strdup(histStruct.commands[i].realCommand);
+    //     }else{
+    //         for(i = histStruct.limit- 1; i >= 0; i--){
+    //             if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+    //                 return strdup(histStruct.commands[i].realCommand);
 
-                }
-            }
-        }
+    //             }
+    //         }
+    //     }
 
     }else{
         for(i = (histStruct.tail-1) %histStruct.limit; i >= 0; i--){
