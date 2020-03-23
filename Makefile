@@ -8,7 +8,7 @@ LOGGER ?= 1
 CFLAGS += -g -Wall -lm -lreadline -fPIC -DLOGGER=$(LOGGER)
 LDFLAGS +=
 
-src=history.c shell.c ui.c next_token.c builtin.c pipe.c
+src=history.c shell.c ui.c next_token.c builtin.c pipe.c jobs.c
 obj=$(src:.c=.o)
 
 all: $(bin) libshell.so
@@ -19,11 +19,12 @@ $(bin): $(obj)
 libshell.so: $(obj)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(obj) -shared -o $@
 
-shell.o: shell.c history.h logger.h ui.h next_token.h builtin.h pipe.h
+shell.o: shell.c history.h logger.h ui.h next_token.h builtin.h pipe.h jobs.h
 history.o: history.c history.h logger.h
 ui.o: ui.h ui.c logger.h history.h next_token.h builtin.h
-builtin.o: builtin.c history.h next_token.h
+builtin.o: builtin.c history.h next_token.h jobs.h
 pipe.o: pipe.c next_token.h logger.h pipe.h ui.h
+jobs.o: jobs.c logger.h jobs.h
 clean:
 	rm -f $(bin) $(obj) libshell.so vgcore.*
 

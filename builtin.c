@@ -1,6 +1,7 @@
 #include "logger.h"
 #include "history.h"
 #include "builtin.h"
+#include "jobs.h"
 #include "next_token.h"
 
 #include <pwd.h>
@@ -12,18 +13,21 @@
 
 
 
-int change_dira(int argc, char *argv[]);
+int change_dir(int argc, char *argv[]);
 int exit_program(int argc, char *argv[]);
 int history_print(int argc, char *argv[]);
+int job_print(int argc, char *argv[]);
+
 
 
 struct builtin_def builtins[] = {
-	{"cd", change_dira},
+	{"cd", change_dir},
 	{"exit", exit_program},
-	{"history", history_print}
+	{"history", history_print},
+	{"job", job_print}
 };
 
-int change_dira(int argc, char *argv[]){
+int change_dir(int argc, char *argv[]){
 	struct passwd *pwd;
 
     uid_t uid = getuid();
@@ -49,6 +53,11 @@ int history_print(int argc, char *argv[]){
 	hist_print();
 	return 1;
 }
+int job_print(int argc, char *argv[]){
+	print_jobs();
+	return 1;
+}
+
 
 int exit_program(int argc, char *argv[]){
 	hist_destroy();
@@ -90,6 +99,12 @@ char *history_execution(int argc, char *argv[]){
 		char* cmd;
 
 		cmd = hist_search_cnum(hist_last_cnum());
+
+		LOG("%s\n",cmd);
+
+		if(cmd == NULL){
+			return NULL;
+		}
 
 		char* dupp = strdup(cmd);
 		execute(dupp);

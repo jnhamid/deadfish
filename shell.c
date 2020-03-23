@@ -15,6 +15,7 @@
 #include "ui.h"
 #include "builtin.h"
 #include "pipe.h"
+#include "jobs.h"
 
 
 bool background = false;
@@ -30,26 +31,12 @@ void sigint_handler(int signo){
     }
 }
 
-// void sigchild_handler(int signo){
-//     if(background){
-//     int status;
-//     pid_t pid;
-//     pid = waitpid(-1, &status, WNOHANG);
-
-//     while(pid != 0 &&  pid != -1){
-        
-//         }
-//     }
-
-
-// }
 
 int main(void)
 {
     init_ui();
-    hist_init(5);
+    hist_init(100);
     signal(SIGINT, sigint_handler);
-    signal(SIGCHLD, sigchild_handler);
 
 
     char *command;
@@ -101,20 +88,17 @@ int main(void)
         while((curr_tok = next_token(&next_tok, " \t")) != NULL) {
 
             cmd[arg_counter++] = curr_tok;
+            LOG("%s\n", cmd[arg_counter-1]);
         }
         
         if(arg_counter == 0){
             continue;
-        // }
-        // if(strncmp((cmd[arg_counter -1]), "&", 1) == 0) {
-        //     LOG("%s\n", *cmd);
-        //     background = true;
-        //     cmd[arg_counter -1] = "\0";
-        //     LOG("%s\n", *cmd);
+        }
+        if(strncmp((cmd[arg_counter -1]), "&", 1) == 0) {
+            background = true;
+            cmd[arg_counter -1] = 0;
 
-           
-
-        // }
+        }
         if ((strcmp(cmd[0], "cd")==0) || (strcmp(cmd[0], "exit")==0) || (strcmp(cmd[0], "jobs")==0) || (strstr(cmd[0], "!"))){
             int n = handle_builtin(*cmd[0], cmd);
 
@@ -134,8 +118,10 @@ int main(void)
             }
         }
 
+    if(!background){
+        cmd[arg_counter +1 ] = "\0";
+    }
 
-    cmd[arg_counter +1 ] = "\0";
     pid_t child = fork();
     if (child == 0) {
         
@@ -155,9 +141,15 @@ int main(void)
     }else 
     {
         if(!background){
+            //add job
             int status;
             waitpid(child, &status, 0);
             set_status(status);
+        }else{
+
+            job_add(duppedCMD, child);
+            signal(SIGCHLD, sigchild_handler);
+            LOG("%s\n","add job");
         }
     }
 

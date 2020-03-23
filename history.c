@@ -11,6 +11,8 @@ struct history_array histStruct = {0};
 
 int mymotherfuckingcount = 0;
 
+int commandCount = 1;
+
 void hist_init(unsigned int limit)
 {
     histStruct.limit = limit;
@@ -35,8 +37,9 @@ void hist_add(const char *cmd)
 
         histStruct.commands[mymotherfuckingcount].realCommand = strdup(cmd);
 
-        histStruct.commands[mymotherfuckingcount].cmdID = mymotherfuckingcount;
+        histStruct.commands[mymotherfuckingcount].cmdID = commandCount;
         histStruct.tail++;
+        commandCount++;
         ++mymotherfuckingcount;
 
 
@@ -45,8 +48,10 @@ void hist_add(const char *cmd)
         histStruct.head++;
         histStruct.head %= histStruct.limit;
         histStruct.commands[index].realCommand = strdup(cmd);
-        histStruct.commands[index].cmdID = mymotherfuckingcount;
+        histStruct.commands[index].cmdID = commandCount;
         mymotherfuckingcount++;
+        commandCount++;
+
 
 
         
@@ -146,7 +151,7 @@ char* hist_search_cnum(int command_number)
     // TODO: Retrieves a particular command number. Return NULL if no match
     // found.
         for(int i = 0; i< histStruct.limit; i++){
-            if(histStruct.commands[i].cmdID == command_number){
+            if(histStruct.commands[i].cmdID == command_number + 1){
                 LOG("%s\n", histStruct.commands[i].realCommand);
 
 
