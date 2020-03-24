@@ -11,11 +11,12 @@ struct jobs_def{
 	pid_t pid;
 };
 
-void sigchild_handler(int signo);
-
 void job_add(char*, pid_t);
 
 void print_jobs();
+
+void removejob(pid_t pid);
+
 
 
 #endif

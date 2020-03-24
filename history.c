@@ -152,8 +152,6 @@ char* hist_search_cnum(int command_number)
     // found.
         for(int i = 0; i< histStruct.limit; i++){
             if(histStruct.commands[i].cmdID == command_number + 1){
-                LOG("%s\n", histStruct.commands[i].realCommand);
-
 
                 return strdup(histStruct.commands[i].realCommand);
             }

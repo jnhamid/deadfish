@@ -31,12 +31,28 @@ void sigint_handler(int signo){
     }
 }
 
+void sigchild_handler(int signo){
+    int status;
+    pid_t pid;
+
+    // LOG("%s\n", "removejob pid");
+    pid = waitpid(-1, &status, WNOHANG);
+
+    while(pid != -1 && pid != 0){
+        removejob(pid);
+        pid = waitpid(-1, &status, WNOHANG);
+
+    }
+    return;
+}
+
 
 int main(void)
 {
     init_ui();
     hist_init(100);
     signal(SIGINT, sigint_handler);
+    signal(SIGCHLD, sigchild_handler);
 
 
     char *command;
@@ -48,7 +64,7 @@ int main(void)
         char *next_tok;
         char *cmd[4096] = {0}; 
         int arg_counter = 0;
-        // bool background = false;
+        background = false;
         next_tok = command = read_command();
 
 
@@ -60,7 +76,6 @@ int main(void)
             continue;
         }
 
-        LOG("%s\n", command);
 
         char *duppedCMD = strdup(command);
 
@@ -88,7 +103,6 @@ int main(void)
         while((curr_tok = next_token(&next_tok, " \t")) != NULL) {
 
             cmd[arg_counter++] = curr_tok;
-            LOG("%s\n", cmd[arg_counter-1]);
         }
         
         if(arg_counter == 0){
@@ -126,8 +140,6 @@ int main(void)
     if (child == 0) {
         
         execvp(cmd[0], cmd);
-        
-        LOG("Input command: %s\n", duppedCMD);
 
         close(fileno(stdin));
         close(fileno(stdout));
@@ -148,8 +160,6 @@ int main(void)
         }else{
 
             job_add(duppedCMD, child);
-            signal(SIGCHLD, sigchild_handler);
-            LOG("%s\n","add job");
         }
     }
 

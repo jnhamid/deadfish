@@ -6,6 +6,8 @@
 #include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <dirent.h>
 
 
 
@@ -32,6 +34,9 @@ int mycount = 0;
 char* status = "🐉";
 
 bool script;
+int n = 0;
+
+int histIndex = 0;
 
 
 
@@ -73,8 +78,8 @@ char *prompt_line1(void) {
     char cwd[PATH_MAX];
     getcwd(cwd, sizeof(cwd));
 
-    if(strstr(cwd, "/home/jnhamid") == cwd){
-        sprintf(cwd, replaceWord(cwd, "/home/jnhamid", "~"));
+    if(strstr(cwd, pwd -> pw_dir) == cwd){
+        sprintf(cwd, replaceWord(cwd, pwd -> pw_dir, "~"));
     }
     // if(script){
 
@@ -133,6 +138,9 @@ int readline_init(void)
 
 int key_up(int count, int key)
 {
+    histIndex = hist_last_cnum();
+    LOG("%d\n",histIndex);
+
     /* Modify the command entry text: */
     rl_replace_line("User pressed 'up' key", 1);
 
@@ -178,6 +186,44 @@ char *command_generator(const char *text, int state)
     // this function is called. You will likely need to maintain static/global
     // variables to track where you are in the search so that you don't start
     // over from the beginning.
+
+    char* possible_commands[4096] = {0};
+    char* matches[4096];
+    int matchesCounter = 0;
+
+    char* path = getenv("PATH");
+
+    LOG("%s\n", path);
+
+
+    DIR *dummy = opendir(path);
+    if( dummy  == NULL){
+        return NULL;
+    }
+    else{
+        struct dirent *enter;
+        int i = 0;
+
+        while((enter = readdir(dummy)) != NULL){
+            possible_commands[i] = enter -> d_name;
+
+            LOG("%s\n", enter -> d_name);
+
+
+            if(strncmp(possible_commands[i], text, strlen(text)) == 0){
+                LOG("%s: %s %d\n", "Possible Match", possible_commands[i], matchesCounter);
+                matches[matchesCounter] = possible_commands[i];
+                matchesCounter++;
+                i++;
+            }
+            break;
+
+            
+        }
+        return matches[0];
+    }
+
+
 
     return NULL;
 }

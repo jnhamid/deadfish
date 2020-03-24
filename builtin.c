@@ -24,7 +24,7 @@ struct builtin_def builtins[] = {
 	{"cd", change_dir},
 	{"exit", exit_program},
 	{"history", history_print},
-	{"job", job_print}
+	{"jobs", job_print}
 };
 
 int change_dir(int argc, char *argv[]){
@@ -72,7 +72,6 @@ char *history_execution(int argc, char *argv[]){
 
 	command++;
 
-	LOG("%s\n",command);
 
 	if(isdigit(command[0])){
 		char* cmd;
@@ -92,8 +91,6 @@ char *history_execution(int argc, char *argv[]){
 
 		
 		return cmd;
-		
-
 		
 	}else if(strcmp(command, "!") == 0){
 		char* cmd;
@@ -115,7 +112,6 @@ char *history_execution(int argc, char *argv[]){
 		char* cmd;
 
 		cmd = hist_search_prefix(command);
-		LOG("%s\n", cmd);
 		if(cmd == NULL){
 			return NULL;
 		}
@@ -134,7 +130,6 @@ char *history_execution(int argc, char *argv[]){
 
 
 int handle_builtin(int argc, char *argv[]){
-	LOG("%s\n", argv[0]);
 	if(argv[0] == NULL){
 		LOGP("Arg is null");
 		return 1;
