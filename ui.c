@@ -19,10 +19,10 @@
 
 /* -- Private function forward declarations -- */
 static int readline_init(void);
-static int key_up(int count, int key);
-static int key_down(int count, int key);
+int key_up(int count, int key);
+int key_down(int count, int key);
 static char **command_completion(const char *text, int start, int end);
-static char *command_generator(const char *text, int state);
+char *command_generator(const char *text, int state);
 
 
 
@@ -170,6 +170,25 @@ char **command_completion(const char *text, int start, int end)
     /* Tell readline that if we don't find a suitable completion, it should fall
      * back on its built-in filename completion. */
     rl_attempted_completion_over = 0;
+    rl_attempted_completion_over = 0;
+
+    char* built_in[4] = ["cd", "exit", "history", "jobs"];
+
+    if(rl_completion_matches(text, command_generator) == NULL){
+        if(strncmp(text, "cd", strlen(text)) == 0){
+               return built_in[0];
+        }
+        if(strncmp(text, "exit", strlen(text)) == 0){
+               return built_in[1];
+        }
+        if(strncmp(text, "history", strlen(text)) == 0){
+               return built_in[2];
+        }
+        if(strncmp(text, "jobs", strlen(text)) == 0){
+               return built_in[3];
+        }
+        rl_attempted_completion_over++;
+    }
 
     return rl_completion_matches(text, command_generator);
 }
@@ -187,8 +206,7 @@ char *command_generator(const char *text, int state)
     // variables to track where you are in the search so that you don't start
     // over from the beginning.
 
-    char* possible_commands[4096] = {0};
-    char* matches[4096];
+    char* matches[4096] = {0};
     int matchesCounter = 0;
 
     char* path = getenv("PATH");
@@ -202,21 +220,13 @@ char *command_generator(const char *text, int state)
     }
     else{
         struct dirent *enter;
-        int i = 0;
-
         while((enter = readdir(dummy)) != NULL){
-            possible_commands[i] = enter -> d_name;
-
-            LOG("%s\n", enter -> d_name);
-
-
-            if(strncmp(possible_commands[i], text, strlen(text)) == 0){
-                LOG("%s: %s %d\n", "Possible Match", possible_commands[i], matchesCounter);
-                matches[matchesCounter] = possible_commands[i];
+            if(strncmp(enter -> d_name, text, strlen(text)) == 0){
+                LOG("%s: %d\n", "Possible Match", matchesCounter);
+                matches[matchesCounter] = enter -> d_name;
                 matchesCounter++;
-                i++;
             }
-            break;
+
 
             
         }
