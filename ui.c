@@ -42,6 +42,10 @@ static char* path = NULL;
 
 DIR *dummy = NULL;
 
+static int built_in_index =0;
+
+static char* built_in[4] = {"cd", "exit", "history", "jobs"};
+
 
 
 
@@ -178,6 +182,17 @@ char **command_completion(const char *text, int start, int end)
     return rl_completion_matches(text, command_generator);
 }
 
+// char *command_helper(const char *text){
+//     struct dirent *enter;
+
+//     while((enter = readdir(dummy)) != NULL){
+//         if(strncmp(enter -> d_name, text, strlen(text)) == 0){
+//             return strdup(enter -> d_name);
+//         }
+//     }
+//     return NULL;
+// }
+
 /**
  * This function is called repeatedly by the readline library to build a list of
  * possible completions. It returns one match per function call. Once there are
@@ -201,57 +216,48 @@ char *command_generator(const char *text, int state)
 
 
     if(path == NULL || strcmp(path, "") == 0){
-        return NULL;
-        
+        if(built_in_index < 4 && strncmp(text, built_in[built_in_index], strlen(text)) == 0){
+            LOG("match: %s\n", built_in[built_in_index]);
+
+            return strdup(built_in[built_in_index++]);
+        }
+        return NULL;    
     }
-
-
     if(state == 0){
 
+        built_in_index = 0;
+
         next_tok = strdup(path);
-        
-        curr_tok = next_token(&next_tok, ":");
 
-        dummy = opendir(curr_tok);
     }
+    struct dirent *enter;
 
-    if( dummy  == NULL){
-        return NULL;
-    }
-    else{
-        struct dirent *enter;
-        while((enter = readdir(dummy)) != NULL){
-                // LOG("enter name: %s  text: %s\n", enter -> d_name, text);
+        if (dummy != NULL){
+            while((enter = readdir(dummy)) != NULL){
                 if(strncmp(enter -> d_name, text, strlen(text)) == 0){
-                    // LOG("%s\n", "Found a match");
+                    LOG("match: %s\n", enter -> d_name);
                     return strdup(enter -> d_name);
                 }
             }
-
+        }
         while((curr_tok = next_token(&next_tok, ":")) != NULL){
             dummy = opendir(curr_tok);
+             LOG("path: %s\n", curr_tok);
+
             if(dummy == NULL){
-                break;
+                continue;
             }
-             while((enter = readdir(dummy)) != NULL){
-                // LOG("enter name: %s  text: %s\n", enter -> d_name, text);
+            while((enter = readdir(dummy)) != NULL){
                 if(strncmp(enter -> d_name, text, strlen(text)) == 0){
-                    // LOG("%s\n", "Found a match");
+                    LOG("match: %s\n", enter -> d_name);
+
                     return strdup(enter -> d_name);
                 }
             }
-        }
-        if(strncmp(text, "cd", strlen(text)) == 0){
-               return strdup("cd");
-        }
-        if(strncmp(text, "exit", strlen(text)) == 0){
-               return strdup("exit");
-        }
-        if(strncmp(text, "history", strlen(text)) == 0){
-               return strdup("history");
-        }
-        if(strncmp(text, "jobs", strlen(text)) == 0){
-               return strdup("jobs");
+    }
+    while(built_in_index < 4){
+        if(strncmp(text, built_in[built_in_index++], strlen(text)) == 0){
+            return strdup(built_in[built_in_index - 1]);
         }
     }
 

@@ -95,20 +95,6 @@ char *hist_search_prefix(char *prefix)
     LOG("%d\n", getCount());
 
 
-    // for (int i =  histStruct.tail%limit-1; i > 0; i--)
-    // {   
-    //     LOG("%d\n", i);
-
-    //     LOG("%s\n", histStruct.commands[i].realCommand);
-    //     if (strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0)
-    //     {   
-
-    //         LOG("%s\n", histStruct.commands[i].realCommand);
-    //         return strdup(histStruct.commands[i].realCommand);
-    //     }
-    // }
-    // TODO: Retrieves the most recent command starting with 'prefix', or NULL
-    // if no match found.
     int i;
     if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
         for(i= histStruct.tail -1; i >= 0; i--){
@@ -116,18 +102,6 @@ char *hist_search_prefix(char *prefix)
                 return strdup(histStruct.commands[i].realCommand);
             }
         }
-    // }else if(histStruct.tail%histStruct.limit == 0){
-    //     if(strncmp(prefix, histStruct.commands[0].realCommand, strlen(prefix)) == 0){
-    //         return strdup(histStruct.commands[0].realCommand);
-
-    //     }else{
-    //         for(i = histStruct.limit- 1; i >= 0; i--){
-    //             if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
-    //                 return strdup(histStruct.commands[i].realCommand);
-
-    //             }
-    //         }
-    //     }
 
     }else{
         for(i = (histStruct.tail-1) %histStruct.limit; i >= 0; i--){
@@ -150,13 +124,34 @@ char* hist_search_cnum(int command_number)
 {
     // TODO: Retrieves a particular command number. Return NULL if no match
     // found.
-        for(int i = 0; i< histStruct.limit; i++){
+
+
+    int i;
+    if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
+        for(i= histStruct.tail -1; i >= 0; i--){
             if(histStruct.commands[i].cmdID == command_number + 1){
 
                 return strdup(histStruct.commands[i].realCommand);
             }
         }
-        return NULL;
+
+    }else{
+        for(i = (histStruct.tail-1) %histStruct.limit; i >= 0; i--){
+            if(histStruct.commands[i].cmdID == command_number + 1){
+
+                return strdup(histStruct.commands[i].realCommand);
+            }
+        }
+        for (i = histStruct.limit -1 ; i >= histStruct.head; i--)
+        {
+            if(histStruct.commands[i].cmdID == command_number + 1){
+
+                return strdup(histStruct.commands[i].realCommand);
+            }
+        }
+    }
+    return NULL;
+
 }
 
 unsigned int hist_last_cnum(void)
