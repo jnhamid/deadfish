@@ -129,7 +129,7 @@ char* hist_search_cnum(int command_number)
     int i;
     if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
         for(i= histStruct.tail -1; i >= 0; i--){
-            if(histStruct.commands[i].cmdID == command_number + 1){
+            if(histStruct.commands[i].cmdID == command_number){
 
                 return strdup(histStruct.commands[i].realCommand);
             }
@@ -137,14 +137,14 @@ char* hist_search_cnum(int command_number)
 
     }else{
         for(i = (histStruct.tail-1) %histStruct.limit; i >= 0; i--){
-            if(histStruct.commands[i].cmdID == command_number + 1){
+            if(histStruct.commands[i].cmdID == command_number){
 
                 return strdup(histStruct.commands[i].realCommand);
             }
         }
         for (i = histStruct.limit -1 ; i >= histStruct.head; i--)
         {
-            if(histStruct.commands[i].cmdID == command_number + 1){
+            if(histStruct.commands[i].cmdID == command_number){
 
                 return strdup(histStruct.commands[i].realCommand);
             }
@@ -157,5 +157,5 @@ char* hist_search_cnum(int command_number)
 unsigned int hist_last_cnum(void)
 {
     // TODO: Retrieve the most recent command number.
-    return histStruct.commands[histStruct.tail%histStruct.limit].cmdID;
+    return histStruct.commands[(histStruct.tail%histStruct.limit) -1].cmdID;
 }
