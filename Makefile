@@ -1,5 +1,5 @@
 # Output binary name
-bin=jsh
+bin=deadfish
 
 # Set the following to '0' to disable log messages:
 LOGGER ?= 1

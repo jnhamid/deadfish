@@ -38,6 +38,10 @@ int n = 0;
 
 int histIndex = 0;
 
+static char* path = NULL;
+
+DIR *dummy = NULL;
+
 
 
 
@@ -111,7 +115,7 @@ char *read_command(void)
         ssize_t read = getline(&line, &line_sz, stdin);
 
         if (read == -1) {
-            LOGP("Reached end of input stream. \n");
+            // LOGP("Reached end of input stream. \n");
             free(line);
             return NULL;
         }
@@ -139,7 +143,7 @@ int readline_init(void)
 int key_up(int count, int key)
 {
     histIndex = hist_last_cnum();
-    LOG("%d\n",histIndex);
+    // LOG("%d\n",histIndex);
 
     /* Modify the command entry text: */
     rl_replace_line("User pressed 'up' key", 1);
@@ -170,25 +174,6 @@ char **command_completion(const char *text, int start, int end)
     /* Tell readline that if we don't find a suitable completion, it should fall
      * back on its built-in filename completion. */
     rl_attempted_completion_over = 0;
-    rl_attempted_completion_over = 0;
-
-    char* built_in[4] = ["cd", "exit", "history", "jobs"];
-
-    if(rl_completion_matches(text, command_generator) == NULL){
-        if(strncmp(text, "cd", strlen(text)) == 0){
-               return built_in[0];
-        }
-        if(strncmp(text, "exit", strlen(text)) == 0){
-               return built_in[1];
-        }
-        if(strncmp(text, "history", strlen(text)) == 0){
-               return built_in[2];
-        }
-        if(strncmp(text, "jobs", strlen(text)) == 0){
-               return built_in[3];
-        }
-        rl_attempted_completion_over++;
-    }
 
     return rl_completion_matches(text, command_generator);
 }
@@ -205,35 +190,70 @@ char *command_generator(const char *text, int state)
     // this function is called. You will likely need to maintain static/global
     // variables to track where you are in the search so that you don't start
     // over from the beginning.
+    char *curr_tok;
+    char *next_tok;
 
-    char* matches[4096] = {0};
-    int matchesCounter = 0;
+    // LOG("----------------state:%d\n", state);
 
-    char* path = getenv("PATH");
+    path = getenv("PATH");
 
-    LOG("%s\n", path);
+    // LOG("path: %s\n", path);
 
 
-    DIR *dummy = opendir(path);
+    if(path == NULL || strcmp(path, "") == 0){
+        return NULL;
+        
+    }
+
+
+    if(state == 0){
+
+        next_tok = strdup(path);
+        
+        curr_tok = next_token(&next_tok, ":");
+
+        dummy = opendir(curr_tok);
+    }
+
     if( dummy  == NULL){
         return NULL;
     }
     else{
         struct dirent *enter;
         while((enter = readdir(dummy)) != NULL){
-            if(strncmp(enter -> d_name, text, strlen(text)) == 0){
-                LOG("%s: %d\n", "Possible Match", matchesCounter);
-                matches[matchesCounter] = enter -> d_name;
-                matchesCounter++;
+                // LOG("enter name: %s  text: %s\n", enter -> d_name, text);
+                if(strncmp(enter -> d_name, text, strlen(text)) == 0){
+                    // LOG("%s\n", "Found a match");
+                    return strdup(enter -> d_name);
+                }
             }
 
-
-            
+        while((curr_tok = next_token(&next_tok, ":")) != NULL){
+            dummy = opendir(curr_tok);
+            if(dummy == NULL){
+                break;
+            }
+             while((enter = readdir(dummy)) != NULL){
+                // LOG("enter name: %s  text: %s\n", enter -> d_name, text);
+                if(strncmp(enter -> d_name, text, strlen(text)) == 0){
+                    // LOG("%s\n", "Found a match");
+                    return strdup(enter -> d_name);
+                }
+            }
         }
-        return matches[0];
+        if(strncmp(text, "cd", strlen(text)) == 0){
+               return strdup("cd");
+        }
+        if(strncmp(text, "exit", strlen(text)) == 0){
+               return strdup("exit");
+        }
+        if(strncmp(text, "history", strlen(text)) == 0){
+               return strdup("history");
+        }
+        if(strncmp(text, "jobs", strlen(text)) == 0){
+               return strdup("jobs");
+        }
     }
-
-
 
     return NULL;
 }
