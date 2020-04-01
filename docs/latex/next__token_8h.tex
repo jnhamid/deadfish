@@ -1,0 +1,50 @@
+\hypertarget{next__token_8h}{}\doxysection{next\+\_\+token.\+h File Reference}
+\label{next__token_8h}\index{next\_token.h@{next\_token.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{next__token_8h_ad1c0e2e740908e5530738d6dba66c858}{next\+\_\+token}} (char $\ast$$\ast$, const char $\ast$)
+\item 
+char $\ast$ \mbox{\hyperlink{next__token_8h_ac46623551b983cc2232bfa06ac4c19c5}{replace\+Word}} (const char $\ast$, const char $\ast$, const char $\ast$)
+\item 
+void \mbox{\hyperlink{next__token_8h_aa6d5612fd36fb292ee35ec0ecd7dd372}{execute}} (char $\ast$\mbox{\hyperlink{structcommand}{command}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global stuff for next\+\_\+token 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{next__token_8h_aa6d5612fd36fb292ee35ec0ecd7dd372}\label{next__token_8h_aa6d5612fd36fb292ee35ec0ecd7dd372}} 
+\index{next\_token.h@{next\_token.h}!execute@{execute}}
+\index{execute@{execute}!next\_token.h@{next\_token.h}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void execute (\begin{DoxyParamCaption}\item[{char $\ast$}]{command }\end{DoxyParamCaption})}
+
+function that runs jobs
+
+Funciton to execute a command \mbox{\Hypertarget{next__token_8h_ad1c0e2e740908e5530738d6dba66c858}\label{next__token_8h_ad1c0e2e740908e5530738d6dba66c858}} 
+\index{next\_token.h@{next\_token.h}!next\_token@{next\_token}}
+\index{next\_token@{next\_token}!next\_token.h@{next\_token.h}}
+\doxysubsubsection{\texorpdfstring{next\_token()}{next\_token()}}
+{\footnotesize\ttfamily char$\ast$ next\+\_\+token (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{str\+\_\+ptr,  }\item[{const char $\ast$}]{delim }\end{DoxyParamCaption})}
+
+function that gets next token
+
+Retrieves the next token from a string.
+
+Parameters\+:
+\begin{DoxyItemize}
+\item str\+\_\+ptr\+: maintains context in the string, i.\+e., where the next token in the string will be. If the function returns token N, then str\+\_\+ptr will be updated to point to token N+1. To initialize, declare a char $\ast$ that points to the string being tokenized. The pointer will be updated after each successive call to next\+\_\+token.
+\item delim\+: the set of characters to use as delimiters
+\end{DoxyItemize}
+
+Returns\+: char pointer to the next token in the string. \mbox{\Hypertarget{next__token_8h_ac46623551b983cc2232bfa06ac4c19c5}\label{next__token_8h_ac46623551b983cc2232bfa06ac4c19c5}} 
+\index{next\_token.h@{next\_token.h}!replaceWord@{replaceWord}}
+\index{replaceWord@{replaceWord}!next\_token.h@{next\_token.h}}
+\doxysubsubsection{\texorpdfstring{replaceWord()}{replaceWord()}}
+{\footnotesize\ttfamily char$\ast$ replace\+Word (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s,  }\item[{const char $\ast$}]{oldW,  }\item[{const char $\ast$}]{newW }\end{DoxyParamCaption})}
+
+function that replaces a str
+
+function to replace a substr (oldW) with (newW) in s 
