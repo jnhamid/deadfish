@@ -1,3 +1,8 @@
+/**
+ * @file
+ *
+ * Pipe implementation 
+ */
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -10,6 +15,11 @@
 #include "next_token.h"
 #include "ui.h"
 
+
+
+/**
+   function that creates my commands
+*/
 void createCmd(char **cmd, int num, struct command_line *commands)
 {
  
@@ -36,6 +46,10 @@ void createCmd(char **cmd, int num, struct command_line *commands)
     commands[index -1].stdout_pipe = false;
 }
 
+
+/**
+   function that executes my pipeline
+*/
 void execute_pipeline(struct command_line *cmds)
 {
     int open_flags = O_RDWR | O_CREAT | O_TRUNC;
@@ -82,7 +96,9 @@ void execute_pipeline(struct command_line *cmds)
 
 
 
-
+/**
+   function that tokenize my commands
+*/
 void tokenize(char* command){
     char *curr_tok;
     char *next_tok;

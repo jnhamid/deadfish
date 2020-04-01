@@ -1,0 +1,46 @@
+\hypertarget{pipe_8c}{}\doxysection{pipe.\+c File Reference}
+\label{pipe_8c}\index{pipe.c@{pipe.c}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}pipe.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}next\+\_\+token.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ui.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pipe_8c_a79a31a4ecd660db2d4b72e4f60040a60}{create\+Cmd}} (char $\ast$$\ast$cmd, int num, struct \mbox{\hyperlink{structcommand__line}{command\+\_\+line}} $\ast$commands)
+\item 
+void \mbox{\hyperlink{pipe_8c_a2aa1c4d6ebe65030391ec3c6bb4a11e2}{execute\+\_\+pipeline}} (struct \mbox{\hyperlink{structcommand__line}{command\+\_\+line}} $\ast$cmds)
+\item 
+void \mbox{\hyperlink{pipe_8c_a06698f1d4691cbe991343088d65d860e}{tokenize}} (char $\ast$\mbox{\hyperlink{structcommand}{command}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Pipe implementation 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pipe_8c_a79a31a4ecd660db2d4b72e4f60040a60}\label{pipe_8c_a79a31a4ecd660db2d4b72e4f60040a60}} 
+\index{pipe.c@{pipe.c}!createCmd@{createCmd}}
+\index{createCmd@{createCmd}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{createCmd()}{createCmd()}}
+{\footnotesize\ttfamily void create\+Cmd (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{cmd,  }\item[{int}]{num,  }\item[{struct \mbox{\hyperlink{structcommand__line}{command\+\_\+line}} $\ast$}]{commands }\end{DoxyParamCaption})}
+
+function that creates my commands \mbox{\Hypertarget{pipe_8c_a2aa1c4d6ebe65030391ec3c6bb4a11e2}\label{pipe_8c_a2aa1c4d6ebe65030391ec3c6bb4a11e2}} 
+\index{pipe.c@{pipe.c}!execute\_pipeline@{execute\_pipeline}}
+\index{execute\_pipeline@{execute\_pipeline}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{execute\_pipeline()}{execute\_pipeline()}}
+{\footnotesize\ttfamily void execute\+\_\+pipeline (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structcommand__line}{command\+\_\+line}} $\ast$}]{cmds }\end{DoxyParamCaption})}
+
+function that executes my pipeline \mbox{\Hypertarget{pipe_8c_a06698f1d4691cbe991343088d65d860e}\label{pipe_8c_a06698f1d4691cbe991343088d65d860e}} 
+\index{pipe.c@{pipe.c}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{tokenize()}{tokenize()}}
+{\footnotesize\ttfamily void tokenize (\begin{DoxyParamCaption}\item[{char $\ast$}]{command }\end{DoxyParamCaption})}
+
+function that tokenize my commands 

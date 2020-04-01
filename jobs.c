@@ -1,3 +1,8 @@
+/**
+ * @file
+ *
+ * Job implementation 
+ */
 #include <string.h>
 #include <stdlib.h>
  #include <sys/wait.h>
@@ -11,6 +16,10 @@ int jobsCounter = 0;
 struct jobs_def jobsStruct[10] = {0};
 
 
+
+/**
+   function that adds to job
+*/
 void job_add(char *name, pid_t pid){
 
 	if(jobsCounter == 10){
@@ -29,6 +38,9 @@ void job_add(char *name, pid_t pid){
 	jobsCounter++;
 }
 
+/**
+   function that removes jobs
+*/
 void removejob(pid_t pid){
 	for(int i =0; i< 10; i++){
 		if(jobsStruct[i].pid == pid || pid == -1){
@@ -41,6 +53,9 @@ void removejob(pid_t pid){
 }
 
 
+/**
+   function that prints jobs
+*/
 void print_jobs(){
 	for(int i = 0; i < 10; i++){
 		if(jobsStruct[i].pid > 0){

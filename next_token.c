@@ -1,9 +1,7 @@
 /**
+ * @file
  * Demonstrates string tokenization in C using the strspn(3) and strcspn(3)
- * functions. Unlike strtok(3), this implementation is thread safe. The code
- * is based on the following newsgroup post:
- *
- * https://groups.google.com/forum/message/raw?msg=comp.lang.c/ff0xFqRPH_Y/Cen0mgciXn8J
+ * functions. And other utility functions.
  */
 
 #include <fcntl.h>
@@ -76,7 +74,9 @@ char *next_token(char **str_ptr, const char *delim)
     return current_ptr;
 }
 
-//stack over flow
+/**
+    function to replace a substr (oldW) with (newW) in s
+*/
 char *replaceWord(const char *s, const char *oldW, const char *newW) 
 { 
     char *result; 
@@ -118,6 +118,9 @@ char *replaceWord(const char *s, const char *oldW, const char *newW)
     return result; 
 } 
 
+/**
+    Function to run a command
+*/
 void runCMD(char* cmd[]){
     pid_t child = fork();
     if (child == 0) {
@@ -141,6 +144,10 @@ void runCMD(char* cmd[]){
         }
 }
 
+
+/**
+    Funciton to execute a command
+*/
 void execute(char* command){
         char *curr_tok;
         char *next_tok;
@@ -150,10 +157,11 @@ void execute(char* command){
         next_tok = command;
 
         if(command == NULL){
+            free(command);
             exit(1);
         }
         if(strcmp(command, "") == 0){
-
+            free(command);
             return;
         }
 
@@ -163,10 +171,14 @@ void execute(char* command){
             tokenize(command);
 
             fflush(stdout);
+            free(command);
+            free(duppedCMD);
             return;
         }
 
         if (feof(stdin) || strncmp(duppedCMD, "exit", 4) == 0) {
+            free(command);
+            free(duppedCMD);
             exit(0);
         }
         if(strstr(command, "#") != 0){
@@ -186,6 +198,8 @@ void execute(char* command){
         }
         
         if(arg_counter == 0){
+            free(command);
+            free(duppedCMD);
             return;
         }
         LOG("%s\n", cmd[0]);
@@ -201,13 +215,11 @@ void execute(char* command){
         }
 
     cmd[arg_counter +1 ] = "\0";
-    runCMD(cmd);
+        runCMD(cmd);
         free(command);
         free(duppedCMD);
         fflush(stdout);
 }
 
 
-
-//trying something
 

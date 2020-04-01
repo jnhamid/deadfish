@@ -1,0 +1,94 @@
+\hypertarget{builtin_8c}{}\doxysection{builtin.\+c File Reference}
+\label{builtin_8c}\index{builtin.c@{builtin.c}}
+{\ttfamily \#include \char`\"{}logger.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}history.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}builtin.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}jobs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}next\+\_\+token.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$pwd.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{builtin_8c_acc11df5ce55c9d3ea3f0202ef375182a}{change\+\_\+dir}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{builtin_8c_af622ece418806db4968bea8e25206561}{exit\+\_\+program}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{builtin_8c_a5c3227e41ae54bce454915b31fe12e28}{history\+\_\+print}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{builtin_8c_a476c0d0f9d20554fa30d5ca31bfb84a0}{job\+\_\+print}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+char $\ast$ \mbox{\hyperlink{builtin_8c_a3acc8705d7d07e34de0d58035bfef0f0}{history\+\_\+execution}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{builtin_8c_a240b67f9c284f6b59857a6867741d205}{handle\+\_\+builtin}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbuiltin__def}{builtin\+\_\+def}} {\bfseries builtins} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File to run builtin commands 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{builtin_8c_acc11df5ce55c9d3ea3f0202ef375182a}\label{builtin_8c_acc11df5ce55c9d3ea3f0202ef375182a}} 
+\index{builtin.c@{builtin.c}!change\_dir@{change\_dir}}
+\index{change\_dir@{change\_dir}!builtin.c@{builtin.c}}
+\doxysubsubsection{\texorpdfstring{change\_dir()}{change\_dir()}}
+{\footnotesize\ttfamily int change\+\_\+dir (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+function to handle cd \mbox{\Hypertarget{builtin_8c_af622ece418806db4968bea8e25206561}\label{builtin_8c_af622ece418806db4968bea8e25206561}} 
+\index{builtin.c@{builtin.c}!exit\_program@{exit\_program}}
+\index{exit\_program@{exit\_program}!builtin.c@{builtin.c}}
+\doxysubsubsection{\texorpdfstring{exit\_program()}{exit\_program()}}
+{\footnotesize\ttfamily int exit\+\_\+program (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+function to handle exit \mbox{\Hypertarget{builtin_8c_a240b67f9c284f6b59857a6867741d205}\label{builtin_8c_a240b67f9c284f6b59857a6867741d205}} 
+\index{builtin.c@{builtin.c}!handle\_builtin@{handle\_builtin}}
+\index{handle\_builtin@{handle\_builtin}!builtin.c@{builtin.c}}
+\doxysubsubsection{\texorpdfstring{handle\_builtin()}{handle\_builtin()}}
+{\footnotesize\ttfamily int handle\+\_\+builtin (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+function to handle builtin \mbox{\Hypertarget{builtin_8c_a3acc8705d7d07e34de0d58035bfef0f0}\label{builtin_8c_a3acc8705d7d07e34de0d58035bfef0f0}} 
+\index{builtin.c@{builtin.c}!history\_execution@{history\_execution}}
+\index{history\_execution@{history\_execution}!builtin.c@{builtin.c}}
+\doxysubsubsection{\texorpdfstring{history\_execution()}{history\_execution()}}
+{\footnotesize\ttfamily char$\ast$ history\+\_\+execution (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+function to handle ! commands \mbox{\Hypertarget{builtin_8c_a5c3227e41ae54bce454915b31fe12e28}\label{builtin_8c_a5c3227e41ae54bce454915b31fe12e28}} 
+\index{builtin.c@{builtin.c}!history\_print@{history\_print}}
+\index{history\_print@{history\_print}!builtin.c@{builtin.c}}
+\doxysubsubsection{\texorpdfstring{history\_print()}{history\_print()}}
+{\footnotesize\ttfamily int history\+\_\+print (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+function to handle history \mbox{\Hypertarget{builtin_8c_a476c0d0f9d20554fa30d5ca31bfb84a0}\label{builtin_8c_a476c0d0f9d20554fa30d5ca31bfb84a0}} 
+\index{builtin.c@{builtin.c}!job\_print@{job\_print}}
+\index{job\_print@{job\_print}!builtin.c@{builtin.c}}
+\doxysubsubsection{\texorpdfstring{job\_print()}{job\_print()}}
+{\footnotesize\ttfamily int job\+\_\+print (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+functions to handle jobs 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{builtin_8c_a3592bfebe4f637e228c46f1ef83c43cb}\label{builtin_8c_a3592bfebe4f637e228c46f1ef83c43cb}} 
+\index{builtin.c@{builtin.c}!builtins@{builtins}}
+\index{builtins@{builtins}!builtin.c@{builtin.c}}
+\doxysubsubsection{\texorpdfstring{builtins}{builtins}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structbuiltin__def}{builtin\+\_\+def}} builtins\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"cd"}, \mbox{\hyperlink{builtin_8c_acc11df5ce55c9d3ea3f0202ef375182a}{change\_dir}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"exit"}, \mbox{\hyperlink{builtin_8c_af622ece418806db4968bea8e25206561}{exit\_program}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"history"}, \mbox{\hyperlink{builtin_8c_a5c3227e41ae54bce454915b31fe12e28}{history\_print}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"jobs"}, \mbox{\hyperlink{builtin_8c_a476c0d0f9d20554fa30d5ca31bfb84a0}{job\_print}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

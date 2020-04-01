@@ -1,3 +1,8 @@
+/**
+ * @file
+ *
+ * File to run builtin commands
+ */
 #include "logger.h"
 #include "history.h"
 #include "builtin.h"
@@ -27,6 +32,9 @@ struct builtin_def builtins[] = {
 	{"jobs", job_print}
 };
 
+/**
+	function to handle cd
+*/
 int change_dir(int argc, char *argv[]){
 	struct passwd *pwd;
 
@@ -49,24 +57,34 @@ int change_dir(int argc, char *argv[]){
     }
     return 1;
 }
+/**
+	function to handle history
+*/
 int history_print(int argc, char *argv[]){
 	hist_print();
 	return 1;
 }
+/**
+	functions to handle jobs
+*/
 int job_print(int argc, char *argv[]){
 	print_jobs();
 	return 1;
 }
 
-
+/**
+	function to handle exit 
+*/
 int exit_program(int argc, char *argv[]){
 	hist_destroy();
 	exit(0);
 	return 1;
 }
 
+/**
+	function to handle ! commands
+*/
 char *history_execution(int argc, char *argv[]){
-	LOG("%s\n", argv[0]);
 
 	char* command = argv[0];
 
@@ -78,18 +96,13 @@ char *history_execution(int argc, char *argv[]){
 
 		cmd = hist_search_cnum(atoi(command));
 
-		LOG("%s\n", cmd);
-
 		if(cmd == NULL){
 
-		return NULL;
-	}	
-		char* dupp = strdup(cmd);
-		execute(dupp);
+			return NULL;
+		}	
 
-		LOG("%s\n", cmd);
+		execute(cmd);
 
-		
 		return cmd;
 		
 	}else if(strcmp(command, "!") == 0){
@@ -103,11 +116,10 @@ char *history_execution(int argc, char *argv[]){
 			return NULL;
 		}
 
-		char* dupp = strdup(cmd);
-		execute(dupp);
+		execute(cmd);
 
-		return cmd;
-		
+
+		return cmd;	
 	}else{
 		char* cmd;
 
@@ -116,8 +128,7 @@ char *history_execution(int argc, char *argv[]){
 			return NULL;
 		}
 
-		char* dupp = strdup(cmd);
-		execute(dupp);
+		execute(cmd);
 
 		return cmd;
 	}
@@ -128,7 +139,9 @@ char *history_execution(int argc, char *argv[]){
 
 
 
-
+/**
+	function to handle builtin
+*/
 int handle_builtin(int argc, char *argv[]){
 	if(argv[0] == NULL){
 		LOGP("Arg is null");

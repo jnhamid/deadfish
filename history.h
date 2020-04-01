@@ -17,7 +17,9 @@ unsigned int hist_last_cnum(void);
 int getCount(void);
 
 
-
+/**
+    a struct for a command in history
+*/
 struct command
     {	
         char* realCommand;
@@ -25,6 +27,10 @@ struct command
 
     };
 
+
+/**
+    array for history
+*/
 struct history_array
     {
         int head; 

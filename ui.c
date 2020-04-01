@@ -1,3 +1,9 @@
+/**
+ * @file
+ *
+ * Text-based UI functionality. These functions are primarily concerned with
+ * interacting with the readline library.
+ */
 #include <stdio.h>
 #include <readline/readline.h>
 #include <locale.h>
@@ -36,7 +42,7 @@ char* status = "🐉";
 bool script;
 int n = 0;
 
-int histIndex = 0;
+int histIndex;
 
 static char* path = NULL;
 
@@ -48,7 +54,9 @@ static char* built_in[4] = {"cd", "exit", "history", "jobs"};
 
 
 
-
+/**
+   function that runs my UI
+*/
 void init_ui(void)
 {
 
@@ -62,6 +70,9 @@ void init_ui(void)
 
 }
 
+/**
+   function that sets my status
+*/
 char* set_status(int s){
     if(s != 0){
         status = "🖕";
@@ -71,6 +82,9 @@ char* set_status(int s){
     return status;
 }
 
+/**
+   function that prints my promptline
+*/
 char *prompt_line1(void) {
     
     struct passwd *pwd;
@@ -89,41 +103,39 @@ char *prompt_line1(void) {
     if(strstr(cwd, pwd -> pw_dir) == cwd){
         sprintf(cwd, replaceWord(cwd, pwd -> pw_dir, "~"));
     }
-    // if(script){
 
     sprintf(temp, "-[%s]-[%d]-[%s@%s:%s]--", status, getCount(), pwd -> pw_name, hostbuffer, cwd);
-    // }
     return temp;
 
 }
 
+/**
+   function that prints my promptline
+*/
 char *prompt_line2(void) {
-    // if(script){
         return prompt_str2;
-
-    // }
-    // return NULL;
 }
 
+/**
+   function that runs a command for terminal or script
+*/
 char *read_command(void)
 {
     if (isatty(STDIN_FILENO)) {
         char* promptLine = prompt_line1();
         puts(promptLine);
-        free(promptLine);
         return readline(prompt_line2());
     }
     else {
-        size_t line_sz = 100;
-        char* line = malloc(100 * sizeof(char));
+        size_t line_sz = 1;
+        char* line = malloc(1 * sizeof(char));
         ssize_t read = getline(&line, &line_sz, stdin);
 
         if (read == -1) {
-            // LOGP("Reached end of input stream. \n");
             free(line);
             return NULL;
         }
-         if (line == NULL || strcmp(line, "") == 0) {
+        if (line == NULL || strcmp(line, "") == 0) {
             free(line);
             return NULL;
         }
@@ -134,6 +146,10 @@ char *read_command(void)
     }
 }
 
+
+/**
+   function that initilzies readline
+*/
 int readline_init(void)
 {
     rl_bind_keyseq("\\e[A", key_up);
@@ -141,16 +157,26 @@ int readline_init(void)
     rl_variable_bind("show-all-if-ambiguous", "on");
     rl_variable_bind("colored-completion-prefix", "on");
     rl_attempted_completion_function = command_completion;
+    histIndex = hist_last_cnum() + 1;
     return 0;
 }
 
+/**
+    function that handles key up being presessed
+*/
 int key_up(int count, int key)
 {
-    histIndex = hist_last_cnum();
-    // LOG("%d\n",histIndex);
 
     /* Modify the command entry text: */
-    rl_replace_line("User pressed 'up' key", 1);
+    if(histIndex > 1){
+        histIndex--;
+    }
+    if(histIndex <= 1){
+        rl_replace_line(hist_search_cnum(1), 1);
+    }else{
+        rl_replace_line(hist_search_cnum(histIndex), 1);
+
+    }
 
     /* Move the cursor to the end of the line: */
     rl_point = rl_end;
@@ -160,10 +186,21 @@ int key_up(int count, int key)
     return 0;
 }
 
+/**
+    function that handles key down being presessed
+*/
 int key_down(int count, int key)
 {
     /* Modify the command entry text: */
-    rl_replace_line("User pressed 'down' key", 1);
+    if(histIndex < hist_last_cnum() +1){
+        histIndex++;
+    }
+    if(histIndex >= (hist_last_cnum() +1)){
+        rl_replace_line("", 1);
+    }else{
+        rl_replace_line(hist_search_cnum(histIndex), 1);
+
+    }
 
     /* Move the cursor to the end of the line: */
     rl_point = rl_end;
@@ -173,6 +210,9 @@ int key_down(int count, int key)
     return 0;
 }
 
+/**
+    function that handles tab being presessed
+*/
 char **command_completion(const char *text, int start, int end)
 {
     /* Tell readline that if we don't find a suitable completion, it should fall
@@ -181,17 +221,6 @@ char **command_completion(const char *text, int start, int end)
 
     return rl_completion_matches(text, command_generator);
 }
-
-// char *command_helper(const char *text){
-//     struct dirent *enter;
-
-//     while((enter = readdir(dummy)) != NULL){
-//         if(strncmp(enter -> d_name, text, strlen(text)) == 0){
-//             return strdup(enter -> d_name);
-//         }
-//     }
-//     return NULL;
-// }
 
 /**
  * This function is called repeatedly by the readline library to build a list of
@@ -208,11 +237,7 @@ char *command_generator(const char *text, int state)
     char *curr_tok;
     char *next_tok;
 
-    // LOG("----------------state:%d\n", state);
-
     path = getenv("PATH");
-
-    // LOG("path: %s\n", path);
 
 
     if(path == NULL || strcmp(path, "") == 0){
@@ -235,22 +260,19 @@ char *command_generator(const char *text, int state)
         if (dummy != NULL){
             while((enter = readdir(dummy)) != NULL){
                 if(strncmp(enter -> d_name, text, strlen(text)) == 0){
-                    LOG("match: %s\n", enter -> d_name);
                     return strdup(enter -> d_name);
                 }
             }
         }
         while((curr_tok = next_token(&next_tok, ":")) != NULL){
             dummy = opendir(curr_tok);
-             LOG("path: %s\n", curr_tok);
+
 
             if(dummy == NULL){
                 continue;
             }
             while((enter = readdir(dummy)) != NULL){
                 if(strncmp(enter -> d_name, text, strlen(text)) == 0){
-                    LOG("match: %s\n", enter -> d_name);
-
                     return strdup(enter -> d_name);
                 }
             }

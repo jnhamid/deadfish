@@ -10,9 +10,24 @@
 
 #include <sys/types.h>
 
+/**
+    function that handles key up being presessed
+*/
 void init_ui(void);
+/**
+    function that handles key up being presessed
+*/
 char *prompt_line1(void);
+/**
+    function that handles key up being presessed
+*/
 char *prompt_line2(void);
+/**
+    function that handles key up being presessed
+*/
 char *read_command(void);
+/**
+    function that handles key up being presessed
+*/
 char* set_status(pid_t);
 #endif

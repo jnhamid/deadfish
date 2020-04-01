@@ -1,3 +1,8 @@
+/**
+ * @file
+ *
+ * Main program that runs shell program.
+ */
 #include <fcntl.h>
 #include <pwd.h>
 #include <stdbool.h>
@@ -20,7 +25,9 @@
 
 bool background = false;
 
-
+/**
+   function that handles my SIGINT
+*/
 void sigint_handler(int signo){
     if(isatty(fileno(stdin))){
         printf("\n");
@@ -31,11 +38,13 @@ void sigint_handler(int signo){
     }
 }
 
+/**
+   function that handles SIGCHLD
+*/
 void sigchild_handler(int signo){
     int status;
     pid_t pid;
 
-    // LOG("%s\n", "removejob pid");
     pid = waitpid(-1, &status, WNOHANG);
 
     while(pid != -1 && pid != 0){
@@ -46,7 +55,9 @@ void sigchild_handler(int signo){
     return;
 }
 
-
+/**
+   function that runs my program
+*/
 int main(void)
 {
     init_ui();
@@ -69,9 +80,11 @@ int main(void)
 
 
         if(command == NULL){
+            free(command);
             break;
         }
         if(strcmp(command, "") == 0){
+            free(command);
 
             continue;
         }
@@ -83,6 +96,8 @@ int main(void)
             tokenize(command);
 
             fflush(stdout);
+            free(command);
+            free(duppedCMD);
             continue;
         }
 
@@ -106,6 +121,8 @@ int main(void)
         }
         
         if(arg_counter == 0){
+            free(command);
+            free(duppedCMD);
             continue;
         }
         if(strncmp((cmd[arg_counter -1]), "&", 1) == 0) {
@@ -144,6 +161,8 @@ int main(void)
         close(fileno(stdin));
         close(fileno(stdout));
         close(fileno(stderr));
+        free(command);
+        free(duppedCMD);
         exit(0);
     }
     else if (child == -1) {

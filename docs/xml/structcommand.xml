@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structcommand" kind="struct" language="C++" prot="public">
+    <compoundname>command</compoundname>
+    <includes refid="history_8h" local="no">history.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structcommand_1a8a5f63da9081278c0cc7cd19fee941eb" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* command::realCommand</definition>
+        <argsstring></argsstring>
+        <name>realCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="history.h" line="25" column="14" bodyfile="history.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcommand_1a6fc0ba7a497105214b52db1d67769ed5" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int command::cmdID</definition>
+        <argsstring></argsstring>
+        <name>cmdID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="history.h" line="26" column="22" bodyfile="history.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>a struct for a command in history </para>
+    </detaileddescription>
+    <location file="history.h" line="24" column="1" bodyfile="history.h" bodystart="23" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structcommand_1a6fc0ba7a497105214b52db1d67769ed5" prot="public" virt="non-virtual"><scope>command</scope><name>cmdID</name></member>
+      <member refid="structcommand_1a8a5f63da9081278c0cc7cd19fee941eb" prot="public" virt="non-virtual"><scope>command</scope><name>realCommand</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

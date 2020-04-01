@@ -1,3 +1,8 @@
+/**
+ * @file
+ *
+ * file to keep track of history.
+ */
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,6 +18,10 @@ int mymotherfuckingcount = 0;
 
 int commandCount = 1;
 
+
+/**
+    function for init hist init
+*/
 void hist_init(unsigned int limit)
 {
     histStruct.limit = limit;
@@ -22,6 +31,10 @@ void hist_init(unsigned int limit)
     histStruct.commands = commands; 
 
 }
+
+/**
+    function for hist destory
+*/
 void hist_destroy(void)
 {
     for(int i =0; i < histStruct.tail; i++){
@@ -29,6 +42,10 @@ void hist_destroy(void)
     }
 }
 
+
+/**
+    function for adding to histort
+*/
 void hist_add(const char *cmd)
 {   
 
@@ -50,16 +67,15 @@ void hist_add(const char *cmd)
         histStruct.commands[index].realCommand = strdup(cmd);
         histStruct.commands[index].cmdID = commandCount;
         mymotherfuckingcount++;
-        commandCount++;
-
-
-
-        
+        commandCount++;  
     }
 
 
 }
 
+/**
+    function for printing history
+*/
 void hist_print(void)
 {   
     int i;
@@ -84,10 +100,17 @@ void hist_print(void)
 
 }
 
+/**
+    function that gets count
+*/
 int getCount(void){
     return mymotherfuckingcount; 
 }
 
+
+/**
+    search thru history for forst command that start with prefix
+*/
 char *hist_search_prefix(char *prefix)
 {   
     LOG("%s\n", prefix);
@@ -119,7 +142,9 @@ char *hist_search_prefix(char *prefix)
     }
     return NULL;
 }
-
+/**
+    search thru history for a command that has command number
+*/
 char* hist_search_cnum(int command_number)
 {
     // TODO: Retrieves a particular command number. Return NULL if no match
@@ -153,7 +178,9 @@ char* hist_search_cnum(int command_number)
     return NULL;
 
 }
-
+/**
+    returns last CMD number 
+*/
 unsigned int hist_last_cnum(void)
 {
     // TODO: Retrieve the most recent command number.
