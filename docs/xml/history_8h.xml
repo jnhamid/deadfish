@@ -150,7 +150,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="15" column="6" bodyfile="history.c" bodystart="193" bodyend="225" declfile="history.h" declline="15" declcolumn="6"/>
+        <location file="history.h" line="15" column="6" bodyfile="history.c" bodystart="196" bodyend="228" declfile="history.h" declline="15" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="history_8h_1a0eb606229fc94b7f7accbec1a6fa0839" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>unsigned int</type>
@@ -167,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="16" column="14" bodyfile="history.c" bodystart="229" bodyend="233" declfile="history.h" declline="16" declcolumn="14"/>
+        <location file="history.h" line="16" column="14" bodyfile="history.c" bodystart="232" bodyend="236" declfile="history.h" declline="16" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="history_8h_1a3b309511777985e50f2743dcccb99b7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -220,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="19" column="6" bodyfile="history.c" bodystart="186" bodyend="188" declfile="history.h" declline="19" declcolumn="6"/>
+        <location file="history.h" line="19" column="6" bodyfile="history.c" bodystart="186" bodyend="191" declfile="history.h" declline="19" declcolumn="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
