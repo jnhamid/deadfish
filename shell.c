@@ -105,10 +105,10 @@ int main(void)
             exit(0);
         }
         if(strstr(command, "#") != 0){
-            if (strcspn(command,"#") == 0) //free command if comment at beginning
+            if (strcspn(command,"#") == 0)
             {
-            free(command);
-            free(duppedCMD);
+                free(command);
+                free(duppedCMD);
              continue;
             }
             *(command+strcspn(command,"#")) = '\0';

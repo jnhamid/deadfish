@@ -20,6 +20,8 @@ int \mbox{\hyperlink{history_8c_a3b309511777985e50f2743dcccb99b7a}{get\+Count}} 
 \item 
 char $\ast$ \mbox{\hyperlink{history_8c_a72ca35050def9b6e8866701e55ba7ec0}{hist\+\_\+search\+\_\+prefix}} (char $\ast$prefix)
 \item 
+int \mbox{\hyperlink{history_8c_a762556522fd2d9f6c0c79c2851eebd2c}{hist\+\_\+search\+\_\+prefix\+\_\+to\+\_\+num}} (char $\ast$prefix)
+\item 
 char $\ast$ \mbox{\hyperlink{history_8c_aa63f78ce7f55a04194c11491edb598bb}{hist\+\_\+search\+\_\+cnum}} (int command\+\_\+number)
 \item 
 unsigned int \mbox{\hyperlink{history_8c_a0eb606229fc94b7f7accbec1a6fa0839}{hist\+\_\+last\+\_\+cnum}} (void)
@@ -90,4 +92,10 @@ search thru history for a command that has command number \mbox{\Hypertarget{his
 \doxysubsubsection{\texorpdfstring{hist\_search\_prefix()}{hist\_search\_prefix()}}
 {\footnotesize\ttfamily char$\ast$ hist\+\_\+search\+\_\+prefix (\begin{DoxyParamCaption}\item[{char $\ast$}]{prefix }\end{DoxyParamCaption})}
 
-search thru history for forst command that start with prefix 
+search thru history for forst command that start with prefix \mbox{\Hypertarget{history_8c_a762556522fd2d9f6c0c79c2851eebd2c}\label{history_8c_a762556522fd2d9f6c0c79c2851eebd2c}} 
+\index{history.c@{history.c}!hist\_search\_prefix\_to\_num@{hist\_search\_prefix\_to\_num}}
+\index{hist\_search\_prefix\_to\_num@{hist\_search\_prefix\_to\_num}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{hist\_search\_prefix\_to\_num()}{hist\_search\_prefix\_to\_num()}}
+{\footnotesize\ttfamily int hist\+\_\+search\+\_\+prefix\+\_\+to\+\_\+num (\begin{DoxyParamCaption}\item[{char $\ast$}]{prefix }\end{DoxyParamCaption})}
+
+search thru history for a command number that starts with prefix 

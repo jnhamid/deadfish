@@ -19,6 +19,13 @@ int mymotherfuckingcount = 0;
 int commandCount = 1;
 
 
+char *matches[100] = {0};
+
+int matchIndex =0;
+
+
+
+
 /**
     function for init hist init
 */
@@ -142,6 +149,41 @@ char *hist_search_prefix(char *prefix)
     }
     return NULL;
 }
+
+/**
+    search thru history for a command number that starts with prefix
+*/
+int hist_search_prefix_to_num(char *prefix)
+{   
+    int i;
+    if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
+        for(i= histStruct.tail -1; i >= 0; i--){
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                matches[matchIndex++] = histStruct.commands[i].realCommand;
+            }
+        }
+
+    }else{
+        for(i = (histStruct.tail-1) %histStruct.limit; i >= 0; i--){
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                matches[matchIndex++] = histStruct.commands[i].realCommand;
+            }
+        }
+        for (i = histStruct.limit -1 ; i >= histStruct.head; i--)
+        {
+            if(strncmp(prefix, histStruct.commands[i].realCommand, strlen(prefix)) == 0){
+                matches[matchIndex++] = histStruct.commands[i].realCommand;
+
+            }
+        }
+    }
+    return 0;
+}
+
+char* getMatch(int index){
+    return matches[index];
+}
+
 /**
     search thru history for a command that has command number
 */
@@ -175,7 +217,7 @@ char* hist_search_cnum(int command_number)
             }
         }
     }
-    return NULL;
+    return "";
 
 }
 /**

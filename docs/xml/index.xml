@@ -46,6 +46,7 @@
     <member refid="history_8c_1af999c218a0ef1e9c89c61038644b6788" kind="function"><name>hist_print</name></member>
     <member refid="history_8c_1a3b309511777985e50f2743dcccb99b7a" kind="function"><name>getCount</name></member>
     <member refid="history_8c_1a72ca35050def9b6e8866701e55ba7ec0" kind="function"><name>hist_search_prefix</name></member>
+    <member refid="history_8c_1a762556522fd2d9f6c0c79c2851eebd2c" kind="function"><name>hist_search_prefix_to_num</name></member>
     <member refid="history_8c_1aa63f78ce7f55a04194c11491edb598bb" kind="function"><name>hist_search_cnum</name></member>
     <member refid="history_8c_1a0eb606229fc94b7f7accbec1a6fa0839" kind="function"><name>hist_last_cnum</name></member>
   </compound>
@@ -58,6 +59,7 @@
     <member refid="history_8h_1abb38a2da97c22e0732929b017a4a1dc5" kind="function"><name>hist_search_cnum</name></member>
     <member refid="history_8h_1a0eb606229fc94b7f7accbec1a6fa0839" kind="function"><name>hist_last_cnum</name></member>
     <member refid="history_8h_1a3b309511777985e50f2743dcccb99b7a" kind="function"><name>getCount</name></member>
+    <member refid="history_8h_1a4883e58ad1bd28cda4edc3cdc4b74a02" kind="function"><name>hist_search_prefix_to_num</name></member>
   </compound>
   <compound refid="jobs_8c" kind="file"><name>jobs.c</name>
     <member refid="jobs_8c_1a6a880eb20178b0a4c81aea7316f182a5" kind="variable"><name>jobsCounter</name></member>

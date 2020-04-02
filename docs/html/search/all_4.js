@@ -8,9 +8,10 @@ var searchData=
   ['hist_5fprint_17',['hist_print',['../history_8c.html#af999c218a0ef1e9c89c61038644b6788',1,'hist_print(void):&#160;history.c'],['../history_8h.html#af999c218a0ef1e9c89c61038644b6788',1,'hist_print(void):&#160;history.c']]],
   ['hist_5fsearch_5fcnum_18',['hist_search_cnum',['../history_8c.html#aa63f78ce7f55a04194c11491edb598bb',1,'hist_search_cnum(int command_number):&#160;history.c'],['../history_8h.html#abb38a2da97c22e0732929b017a4a1dc5',1,'hist_search_cnum(int):&#160;history.c']]],
   ['hist_5fsearch_5fprefix_19',['hist_search_prefix',['../history_8c.html#a72ca35050def9b6e8866701e55ba7ec0',1,'hist_search_prefix(char *prefix):&#160;history.c'],['../history_8h.html#ab48bf66df4d8a4010c17c15994d14a72',1,'hist_search_prefix(char *):&#160;history.c']]],
-  ['history_2ec_20',['history.c',['../history_8c.html',1,'']]],
-  ['history_2eh_21',['history.h',['../history_8h.html',1,'']]],
-  ['history_5farray_22',['history_array',['../structhistory__array.html',1,'']]],
-  ['history_5fexecution_23',['history_execution',['../builtin_8c.html#a3acc8705d7d07e34de0d58035bfef0f0',1,'history_execution(int argc, char *argv[]):&#160;builtin.c'],['../builtin_8h.html#a3acc8705d7d07e34de0d58035bfef0f0',1,'history_execution(int argc, char *argv[]):&#160;builtin.c']]],
-  ['history_5fprint_24',['history_print',['../builtin_8c.html#a5c3227e41ae54bce454915b31fe12e28',1,'builtin.c']]]
+  ['hist_5fsearch_5fprefix_5fto_5fnum_20',['hist_search_prefix_to_num',['../history_8c.html#a762556522fd2d9f6c0c79c2851eebd2c',1,'hist_search_prefix_to_num(char *prefix):&#160;history.c'],['../history_8h.html#a4883e58ad1bd28cda4edc3cdc4b74a02',1,'hist_search_prefix_to_num(char *):&#160;history.c']]],
+  ['history_2ec_21',['history.c',['../history_8c.html',1,'']]],
+  ['history_2eh_22',['history.h',['../history_8h.html',1,'']]],
+  ['history_5farray_23',['history_array',['../structhistory__array.html',1,'']]],
+  ['history_5fexecution_24',['history_execution',['../builtin_8c.html#a3acc8705d7d07e34de0d58035bfef0f0',1,'history_execution(int argc, char *argv[]):&#160;builtin.c'],['../builtin_8h.html#a3acc8705d7d07e34de0d58035bfef0f0',1,'history_execution(int argc, char *argv[]):&#160;builtin.c']]],
+  ['history_5fprint_25',['history_print',['../builtin_8c.html#a5c3227e41ae54bce454915b31fe12e28',1,'builtin.c']]]
 ];
