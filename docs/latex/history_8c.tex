@@ -22,6 +22,8 @@ char $\ast$ \mbox{\hyperlink{history_8c_a72ca35050def9b6e8866701e55ba7ec0}{hist\
 \item 
 int \mbox{\hyperlink{history_8c_a762556522fd2d9f6c0c79c2851eebd2c}{hist\+\_\+search\+\_\+prefix\+\_\+to\+\_\+num}} (char $\ast$prefix)
 \item 
+char $\ast$ \mbox{\hyperlink{history_8c_a8ed8a321052ca85db69ddb99fb340f8a}{get\+Match}} (int index)
+\item 
 char $\ast$ \mbox{\hyperlink{history_8c_aa63f78ce7f55a04194c11491edb598bb}{hist\+\_\+search\+\_\+cnum}} (int command\+\_\+number)
 \item 
 unsigned int \mbox{\hyperlink{history_8c_a0eb606229fc94b7f7accbec1a6fa0839}{hist\+\_\+last\+\_\+cnum}} (void)
@@ -37,6 +39,12 @@ int {\bfseries mymotherfuckingcount} = 0
 \item 
 \mbox{\Hypertarget{history_8c_acb8db36e3de4a84015c95176dd95ce8e}\label{history_8c_acb8db36e3de4a84015c95176dd95ce8e}} 
 int {\bfseries command\+Count} = 1
+\item 
+\mbox{\Hypertarget{history_8c_af253e1cb3ffd6a5ea9be7c0e4c6776cf}\label{history_8c_af253e1cb3ffd6a5ea9be7c0e4c6776cf}} 
+char $\ast$ {\bfseries matches} \mbox{[}100\mbox{]} = \{0\}
+\item 
+\mbox{\Hypertarget{history_8c_ac8dccf232221d45dd9c4c8d7408c157f}\label{history_8c_ac8dccf232221d45dd9c4c8d7408c157f}} 
+int {\bfseries match\+Index} =0
 \end{DoxyCompactItemize}
 
 
@@ -50,7 +58,13 @@ file to keep track of history.
 \doxysubsubsection{\texorpdfstring{getCount()}{getCount()}}
 {\footnotesize\ttfamily int get\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-function that gets count \mbox{\Hypertarget{history_8c_af52f1f17c156adbb0a08db4b915aec1c}\label{history_8c_af52f1f17c156adbb0a08db4b915aec1c}} 
+function that gets count \mbox{\Hypertarget{history_8c_a8ed8a321052ca85db69ddb99fb340f8a}\label{history_8c_a8ed8a321052ca85db69ddb99fb340f8a}} 
+\index{history.c@{history.c}!getMatch@{getMatch}}
+\index{getMatch@{getMatch}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{getMatch()}{getMatch()}}
+{\footnotesize\ttfamily char$\ast$ get\+Match (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+Returns a match based on index \mbox{\Hypertarget{history_8c_af52f1f17c156adbb0a08db4b915aec1c}\label{history_8c_af52f1f17c156adbb0a08db4b915aec1c}} 
 \index{history.c@{history.c}!hist\_add@{hist\_add}}
 \index{hist\_add@{hist\_add}!history.c@{history.c}}
 \doxysubsubsection{\texorpdfstring{hist\_add()}{hist\_add()}}

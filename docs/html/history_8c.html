@@ -90,6 +90,8 @@ Functions</h2></td></tr>
 <tr class="separator:a72ca35050def9b6e8866701e55ba7ec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a762556522fd2d9f6c0c79c2851eebd2c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8c.html#a762556522fd2d9f6c0c79c2851eebd2c">hist_search_prefix_to_num</a> (char *prefix)</td></tr>
 <tr class="separator:a762556522fd2d9f6c0c79c2851eebd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ed8a321052ca85db69ddb99fb340f8a"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8c.html#a8ed8a321052ca85db69ddb99fb340f8a">getMatch</a> (int index)</td></tr>
+<tr class="separator:a8ed8a321052ca85db69ddb99fb340f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa63f78ce7f55a04194c11491edb598bb"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8c.html#aa63f78ce7f55a04194c11491edb598bb">hist_search_cnum</a> (int command_number)</td></tr>
 <tr class="separator:aa63f78ce7f55a04194c11491edb598bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0eb606229fc94b7f7accbec1a6fa0839"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8c.html#a0eb606229fc94b7f7accbec1a6fa0839">hist_last_cnum</a> (void)</td></tr>
@@ -106,6 +108,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>mymotherfuckingcount</
 <tr class="memitem:acb8db36e3de4a84015c95176dd95ce8e"><td class="memItemLeft" align="right" valign="top"><a id="acb8db36e3de4a84015c95176dd95ce8e"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>commandCount</b> = 1</td></tr>
 <tr class="separator:acb8db36e3de4a84015c95176dd95ce8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af253e1cb3ffd6a5ea9be7c0e4c6776cf"><td class="memItemLeft" align="right" valign="top"><a id="af253e1cb3ffd6a5ea9be7c0e4c6776cf"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>matches</b> [100] = {0}</td></tr>
+<tr class="separator:af253e1cb3ffd6a5ea9be7c0e4c6776cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8dccf232221d45dd9c4c8d7408c157f"><td class="memItemLeft" align="right" valign="top"><a id="ac8dccf232221d45dd9c4c8d7408c157f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>matchIndex</b> =0</td></tr>
+<tr class="separator:ac8dccf232221d45dd9c4c8d7408c157f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>file to keep track of history. </p>
@@ -126,6 +134,25 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>commandCount</b> = 1</
       </table>
 </div><div class="memdoc">
 <p>function that gets count </p>
+
+</div>
+</div>
+<a id="a8ed8a321052ca85db69ddb99fb340f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ed8a321052ca85db69ddb99fb340f8a">&#9670;&nbsp;</a></span>getMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* getMatch </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a match based on index </p>
 
 </div>
 </div>

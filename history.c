@@ -177,11 +177,17 @@ int hist_search_prefix_to_num(char *prefix)
             }
         }
     }
-    return 0;
+    return matchIndex -2;
 }
 
+/**
+   Returns a match based on index
+*/
 char* getMatch(int index){
-    return matches[index];
+    if(index >= 0 && index <= matchIndex -1){
+        return matches[index];
+    }
+    return "";
 }
 
 /**
@@ -217,7 +223,7 @@ char* hist_search_cnum(int command_number)
             }
         }
     }
-    return "";
+    return NULL;
 
 }
 /**

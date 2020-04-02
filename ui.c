@@ -55,6 +55,8 @@ int keyIndex =0;
 
 int matchC = 0;
 
+int matchSize;
+
 
 
 static char* path = NULL;
@@ -201,7 +203,7 @@ int key_up(int count, int key)
 
     if(keyIndex == 0){
         searchStr = strdup(rl_line_buffer);
-        hist_search_prefix_to_num(searchStr);
+        matchSize = hist_search_prefix_to_num(searchStr);
         matchC = 0;
         keyIndex++;
     }
@@ -213,7 +215,7 @@ int key_up(int count, int key)
     // LOG("%s\n", searchStr);
 
 
-    if(strcmp(searchStr, "") == 0 || searchStr == NULL){
+    if(strcmp(searchStr, "") == 0){
 
         if(histIndex > 1){
             histIndex--;
@@ -226,7 +228,11 @@ int key_up(int count, int key)
         }
     }
     else{
+        // if(matchC++ > matchSize){
+        //     rl_replace_line(getMatch(matchSize), 1);
+        // }else{
             rl_replace_line(getMatch(matchC++), 1);
+        // }
     }
 
     // if(j < 0){
@@ -256,7 +262,7 @@ int key_down(int count, int key)
 {
     /* Modify the command entry text: */
 
-    if(strcmp(searchStr, "") == 0 || searchStr == NULL){
+    if(strcmp(searchStr, "") == 0){
         if(histIndex < hist_last_cnum() +1){
             histIndex++;
         }
@@ -267,9 +273,14 @@ int key_down(int count, int key)
 
         }
     }else{
-        rl_replace_line(getMatch(--matchC), 1);
 
+        // if(--matchC > 0){
+        //     rl_replace_line("", 1);
 
+        // }else{
+        // matchC--;
+            rl_replace_line(getMatch(--matchC), 1);
+        // }
     }
 
     //  if(j > 0){

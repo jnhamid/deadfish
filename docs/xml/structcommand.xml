@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="26" column="14" bodyfile="history.h" bodystart="26" bodyend="-1"/>
+        <location file="history.h" line="28" column="14" bodyfile="history.h" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structcommand_1a6fc0ba7a497105214b52db1d67769ed5" prot="public" static="no" mutable="no">
         <type>unsigned int</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="27" column="22" bodyfile="history.h" bodystart="27" bodyend="-1"/>
+        <location file="history.h" line="29" column="22" bodyfile="history.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -36,7 +36,7 @@
     <detaileddescription>
 <para>a struct for a command in history </para>
     </detaileddescription>
-    <location file="history.h" line="25" column="1" bodyfile="history.h" bodystart="24" bodyend="29"/>
+    <location file="history.h" line="27" column="1" bodyfile="history.h" bodystart="26" bodyend="31"/>
     <listofallmembers>
       <member refid="structcommand_1a6fc0ba7a497105214b52db1d67769ed5" prot="public" virt="non-virtual"><scope>command</scope><name>cmdID</name></member>
       <member refid="structcommand_1a8a5f63da9081278c0cc7cd19fee941eb" prot="public" virt="non-virtual"><scope>command</scope><name>realCommand</name></member>

@@ -16,7 +16,6 @@ char *hist_search_cnum(int);
 unsigned int hist_last_cnum(void);
 int getCount(void);
 int hist_search_prefix_to_num(char *);
-
 char* getMatch(int);
 
 

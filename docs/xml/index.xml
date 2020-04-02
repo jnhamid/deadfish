@@ -40,6 +40,8 @@
     <member refid="history_8c_1a7ded34e83a6e5eb90216cec937dc5b92" kind="variable"><name>histStruct</name></member>
     <member refid="history_8c_1a77d0a351b4075b9014b9b78eadfcb085" kind="variable"><name>mymotherfuckingcount</name></member>
     <member refid="history_8c_1acb8db36e3de4a84015c95176dd95ce8e" kind="variable"><name>commandCount</name></member>
+    <member refid="history_8c_1af253e1cb3ffd6a5ea9be7c0e4c6776cf" kind="variable"><name>matches</name></member>
+    <member refid="history_8c_1ac8dccf232221d45dd9c4c8d7408c157f" kind="variable"><name>matchIndex</name></member>
     <member refid="history_8c_1a53bf242cdbc6e517f7539436cbdf0f16" kind="function"><name>hist_init</name></member>
     <member refid="history_8c_1a347cbc48b8e346aed7163ddf719b91fc" kind="function"><name>hist_destroy</name></member>
     <member refid="history_8c_1af52f1f17c156adbb0a08db4b915aec1c" kind="function"><name>hist_add</name></member>
@@ -47,6 +49,7 @@
     <member refid="history_8c_1a3b309511777985e50f2743dcccb99b7a" kind="function"><name>getCount</name></member>
     <member refid="history_8c_1a72ca35050def9b6e8866701e55ba7ec0" kind="function"><name>hist_search_prefix</name></member>
     <member refid="history_8c_1a762556522fd2d9f6c0c79c2851eebd2c" kind="function"><name>hist_search_prefix_to_num</name></member>
+    <member refid="history_8c_1a8ed8a321052ca85db69ddb99fb340f8a" kind="function"><name>getMatch</name></member>
     <member refid="history_8c_1aa63f78ce7f55a04194c11491edb598bb" kind="function"><name>hist_search_cnum</name></member>
     <member refid="history_8c_1a0eb606229fc94b7f7accbec1a6fa0839" kind="function"><name>hist_last_cnum</name></member>
   </compound>
@@ -60,6 +63,7 @@
     <member refid="history_8h_1a0eb606229fc94b7f7accbec1a6fa0839" kind="function"><name>hist_last_cnum</name></member>
     <member refid="history_8h_1a3b309511777985e50f2743dcccb99b7a" kind="function"><name>getCount</name></member>
     <member refid="history_8h_1a4883e58ad1bd28cda4edc3cdc4b74a02" kind="function"><name>hist_search_prefix_to_num</name></member>
+    <member refid="history_8h_1a40248a40aefe5cc5b458543e56282007" kind="function"><name>getMatch</name></member>
   </compound>
   <compound refid="jobs_8c" kind="file"><name>jobs.c</name>
     <member refid="jobs_8c_1a6a880eb20178b0a4c81aea7316f182a5" kind="variable"><name>jobsCounter</name></member>
@@ -111,12 +115,16 @@
     <member refid="shell_8c_1a840291bc02cba5474a4cb46a9b9566fe" kind="function"><name>main</name></member>
   </compound>
   <compound refid="ui_8c" kind="file"><name>ui.c</name>
+    <member refid="ui_8c_1ad0298dbdc5959e37e514bff6e1b749fe" kind="variable"><name>searchStr</name></member>
+    <member refid="ui_8c_1a73201bf2f656f02194923fbf189e643b" kind="variable"><name>lastStr</name></member>
     <member refid="ui_8c_1adb264de65f2c2361d5de6334a2d31cec" kind="variable"><name>prompt_str2</name></member>
     <member refid="ui_8c_1a51acdd73d19cb9cb3fc323480d68a1ea" kind="variable"><name>mycount</name></member>
     <member refid="ui_8c_1a3cbe9fdcd03667b9bc176454129f4d52" kind="variable"><name>status</name></member>
     <member refid="ui_8c_1ad97904ef8030af64a5213ef10a22689c" kind="variable"><name>script</name></member>
     <member refid="ui_8c_1a76f11d9a0a47b94f72c2d0e77fb32240" kind="variable"><name>n</name></member>
     <member refid="ui_8c_1aad808b2393e4cec004d6a42b2d450f9d" kind="variable"><name>histIndex</name></member>
+    <member refid="ui_8c_1a3bb44be6bab7225fcea225995245e3cb" kind="variable"><name>keyIndex</name></member>
+    <member refid="ui_8c_1ac2eb42a54e00e77197545b76dd893950" kind="variable"><name>matchC</name></member>
     <member refid="ui_8c_1a44196e6a5696d10442c29e639437196e" kind="variable"><name>path</name></member>
     <member refid="ui_8c_1a3c5d995b567f558f71d16d9b708e8770" kind="variable"><name>dummy</name></member>
     <member refid="ui_8c_1ae12be2964a0404759e39f10d8ba0ced4" kind="variable"><name>built_in_index</name></member>

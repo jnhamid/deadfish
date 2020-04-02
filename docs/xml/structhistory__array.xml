@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="37" column="13" bodyfile="history.h" bodystart="37" bodyend="-1"/>
+        <location file="history.h" line="39" column="13" bodyfile="history.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhistory__array_1ae0905da42227e73b3ee02f107fb83ceb" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="38" column="13" bodyfile="history.h" bodystart="38" bodyend="-1"/>
+        <location file="history.h" line="40" column="13" bodyfile="history.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhistory__array_1a8402ea5b322552c36589f94e8db24311" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="39" column="13" bodyfile="history.h" bodystart="39" bodyend="-1"/>
+        <location file="history.h" line="41" column="13" bodyfile="history.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhistory__array_1a89d4763c3879979ddc18be1e0debbfb8" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structcommand" kindref="compound">command</ref> *</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="40" column="22" bodyfile="history.h" bodystart="40" bodyend="-1"/>
+        <location file="history.h" line="42" column="22" bodyfile="history.h" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -75,7 +75,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="history.h" line="36" column="1" bodyfile="history.h" bodystart="35" bodyend="42"/>
+    <location file="history.h" line="38" column="1" bodyfile="history.h" bodystart="37" bodyend="44"/>
     <listofallmembers>
       <member refid="structhistory__array_1a89d4763c3879979ddc18be1e0debbfb8" prot="public" virt="non-virtual"><scope>history_array</scope><name>commands</name></member>
       <member refid="structhistory__array_1a1c066f8d003d977ac9e2753d27b7c8b9" prot="public" virt="non-virtual"><scope>history_array</scope><name>head</name></member>

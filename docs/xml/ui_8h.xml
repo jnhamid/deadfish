@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ui.h" line="16" column="6" bodyfile="ui.c" bodystart="60" bodyend="71" declfile="ui.h" declline="16" declcolumn="6"/>
+        <location file="ui.h" line="16" column="6" bodyfile="ui.c" bodystart="73" bodyend="84" declfile="ui.h" declline="16" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="ui_8h_1ae53c4ac7d02aadd7d3ad0587966cdc22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -90,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ui.h" line="20" column="6" bodyfile="ui.c" bodystart="88" bodyend="110" declfile="ui.h" declline="20" declcolumn="6"/>
+        <location file="ui.h" line="20" column="6" bodyfile="ui.c" bodystart="101" bodyend="123" declfile="ui.h" declline="20" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="ui_8h_1a7442002cf30c2f3c65c46d2e7f0af0c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ui.h" line="24" column="6" bodyfile="ui.c" bodystart="115" bodyend="117" declfile="ui.h" declline="24" declcolumn="6"/>
+        <location file="ui.h" line="24" column="6" bodyfile="ui.c" bodystart="128" bodyend="130" declfile="ui.h" declline="24" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="ui_8h_1a5f1b7595f2672ad9842f962ff050183d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ui.h" line="28" column="6" bodyfile="ui.c" bodystart="122" bodyend="147" declfile="ui.h" declline="28" declcolumn="6"/>
+        <location file="ui.h" line="28" column="6" bodyfile="ui.c" bodystart="135" bodyend="160" declfile="ui.h" declline="28" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="ui_8h_1a12c8418c957d3b6e44853965b148eb4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>

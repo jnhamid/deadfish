@@ -27,6 +27,8 @@ unsigned int \mbox{\hyperlink{history_8h_a0eb606229fc94b7f7accbec1a6fa0839}{hist
 int \mbox{\hyperlink{history_8h_a3b309511777985e50f2743dcccb99b7a}{get\+Count}} (void)
 \item 
 int \mbox{\hyperlink{history_8h_a4883e58ad1bd28cda4edc3cdc4b74a02}{hist\+\_\+search\+\_\+prefix\+\_\+to\+\_\+num}} (char $\ast$)
+\item 
+char $\ast$ \mbox{\hyperlink{history_8h_a40248a40aefe5cc5b458543e56282007}{get\+Match}} (int)
 \end{DoxyCompactItemize}
 
 
@@ -40,7 +42,13 @@ Contains shell history data structures and retrieval functions.
 \doxysubsubsection{\texorpdfstring{getCount()}{getCount()}}
 {\footnotesize\ttfamily int get\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-function that gets count \mbox{\Hypertarget{history_8h_a848b851b07a62087aa42263444d7e3df}\label{history_8h_a848b851b07a62087aa42263444d7e3df}} 
+function that gets count \mbox{\Hypertarget{history_8h_a40248a40aefe5cc5b458543e56282007}\label{history_8h_a40248a40aefe5cc5b458543e56282007}} 
+\index{history.h@{history.h}!getMatch@{getMatch}}
+\index{getMatch@{getMatch}!history.h@{history.h}}
+\doxysubsubsection{\texorpdfstring{getMatch()}{getMatch()}}
+{\footnotesize\ttfamily char$\ast$ get\+Match (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+Returns a match based on index \mbox{\Hypertarget{history_8h_a848b851b07a62087aa42263444d7e3df}\label{history_8h_a848b851b07a62087aa42263444d7e3df}} 
 \index{history.h@{history.h}!hist\_add@{hist\_add}}
 \index{hist\_add@{hist\_add}!history.h@{history.h}}
 \doxysubsubsection{\texorpdfstring{hist\_add()}{hist\_add()}}
