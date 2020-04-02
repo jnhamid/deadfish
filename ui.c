@@ -32,7 +32,7 @@ char *command_generator(const char *text, int state);
 
 
 char* searchStr = NULL;
-char* lastStr =NULL;
+char* lastStr = "";
 
 
 
@@ -132,6 +132,13 @@ char *prompt_line2(void) {
 }
 
 /**
+    function that resests my key index;
+*/
+void reset(){
+    keyIndex = 0;
+}
+
+/**
    function that runs a command for terminal or script
 */
 char *read_command(void)
@@ -154,7 +161,7 @@ char *read_command(void)
             free(line);
             return NULL;
         }
-
+        reset();
         size_t newline = strcspn(line, "\n");
         line[newline] = '\0';
         return line;
@@ -167,18 +174,6 @@ char *read_command(void)
 */
 int readline_init(void)
 {
-    // i =0; 
-    // j = hist_last_cnum() ;
-
-    // while(i < 100 && j > 1){
-    //     matches[i] = strdup(hist_search_cnum(j));
-    //     i++;
-    //     j--;
-    // }
-    // if(j == 1){
-    //     j--;
-    // }
-
     rl_bind_keyseq("\\e[A", key_up);
     rl_bind_keyseq("\\e[B", key_down);
     rl_variable_bind("show-all-if-ambiguous", "on");
@@ -193,27 +188,16 @@ int readline_init(void)
 */
 int key_up(int count, int key)
 {
-
-    // LOG("%s\n", rl_line_buffer);
+    if(strcmp(lastStr, rl_line_buffer) != 0 && rl_line_buffer != NULL){
+        reset();
+    }
     /* Modify the command entry text: */
-    // LOG("%s\n", searchStr);
-    // LOG("%s\n", rl_line_buffer);
-
-
-
     if(keyIndex == 0){
         searchStr = strdup(rl_line_buffer);
         matchSize = hist_search_prefix_to_num(searchStr);
-        matchC = 0;
+        matchC = -1;
         keyIndex++;
     }
-
-    // if(strcmp(searchStr, lastStr) == 0){
-    //     printf("HI FOLKS");
-    // }
-
-    // LOG("%s\n", searchStr);
-
 
     if(strcmp(searchStr, "") == 0){
 
@@ -222,30 +206,32 @@ int key_up(int count, int key)
         }
         if(histIndex <= 1){
             rl_replace_line(hist_search_cnum(1), 1);
+            lastStr = strdup(rl_line_buffer);
+
         }else{
             rl_replace_line(hist_search_cnum(histIndex), 1);
+            lastStr = strdup(rl_line_buffer);
+            
 
         }
     }
     else{
-        // if(matchC++ > matchSize){
-        //     rl_replace_line(getMatch(matchSize), 1);
-        // }else{
-            rl_replace_line(getMatch(matchC++), 1);
-        // }
+        if(matchC < matchSize){
+            matchC++;
+        }
+        if (matchC >= matchSize)
+        {
+            rl_replace_line(getMatch(matchSize), 1);
+            lastStr = strdup(rl_line_buffer);
+
+
+        }else{
+            rl_replace_line(getMatch(matchC), 1);
+            lastStr = strdup(rl_line_buffer);
+        }
+
+       
     }
-
-    // if(j < 0){
-    //     j++;
-    // }
-
-    // if(j >= i){
-    //     rl_replace_line(matches[j-1], 1);
-    // }else{
-    //     rl_replace_line(matches[j], 1);
-    //     j++;
-
-    // }
 
     /* Move the cursor to the end of the line: */
     rl_point = rl_end;
@@ -260,7 +246,16 @@ int key_up(int count, int key)
 */
 int key_down(int count, int key)
 {
+    if(strcmp(lastStr, rl_line_buffer) != 0 && rl_line_buffer != NULL){
+        reset();
+    }
     /* Modify the command entry text: */
+    if(keyIndex == 0){
+        searchStr = strdup(rl_line_buffer);
+        matchSize = hist_search_prefix_to_num(searchStr);
+        matchC = 0;
+        keyIndex++;
+    }
 
     if(strcmp(searchStr, "") == 0){
         if(histIndex < hist_last_cnum() +1){
@@ -268,31 +263,31 @@ int key_down(int count, int key)
         }
         if(histIndex >= (hist_last_cnum() +1)){
             rl_replace_line("", 1);
+            lastStr = strdup(rl_line_buffer);
+
         }else{
             rl_replace_line(hist_search_cnum(histIndex), 1);
+            lastStr = strdup(rl_line_buffer);
+
 
         }
     }else{
+        if(matchC >= 0){
+                   matchC--;
+               }
+               if (matchC < 0)
+               {
+                   rl_replace_line("", 1);
+                   lastStr = strdup(rl_line_buffer);
 
-        // if(--matchC > 0){
-        //     rl_replace_line("", 1);
 
-        // }else{
-        // matchC--;
-            rl_replace_line(getMatch(--matchC), 1);
-        // }
+               }else{
+                   rl_replace_line(getMatch(matchC), 1);
+                   lastStr = strdup(rl_line_buffer);
+               }
+
     }
 
-    //  if(j > 0){
-    //     j--;
-    // }
-
-    // if(j <= i){
-    //     rl_replace_line(matches[j+1], 1);
-    // }else{
-    //     rl_replace_line(matches[j], 1);
-    //     j--;
-    // }
 
 
     /* Move the cursor to the end of the line: */

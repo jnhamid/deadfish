@@ -31,6 +31,8 @@ char $\ast$ \mbox{\hyperlink{ui_8c_ae53c4ac7d02aadd7d3ad0587966cdc22}{prompt\+\_
 \item 
 char $\ast$ \mbox{\hyperlink{ui_8c_a7442002cf30c2f3c65c46d2e7f0af0c1}{prompt\+\_\+line2}} (void)
 \item 
+void \mbox{\hyperlink{ui_8c_ad20897c5c8bd47f5d4005989bead0e55}{reset}} ()
+\item 
 char $\ast$ \mbox{\hyperlink{ui_8c_a5f1b7595f2672ad9842f962ff050183d}{read\+\_\+command}} (void)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
@@ -40,7 +42,7 @@ char $\ast$ \mbox{\hyperlink{ui_8c_a5f1b7595f2672ad9842f962ff050183d}{read\+\_\+
 char $\ast$ {\bfseries search\+Str} = N\+U\+LL
 \item 
 \mbox{\Hypertarget{ui_8c_a73201bf2f656f02194923fbf189e643b}\label{ui_8c_a73201bf2f656f02194923fbf189e643b}} 
-char $\ast$ {\bfseries last\+Str} =N\+U\+LL
+char $\ast$ {\bfseries last\+Str} = \char`\"{}\char`\"{}
 \item 
 \mbox{\Hypertarget{ui_8c_a51acdd73d19cb9cb3fc323480d68a1ea}\label{ui_8c_a51acdd73d19cb9cb3fc323480d68a1ea}} 
 int {\bfseries mycount} = 0
@@ -117,7 +119,13 @@ function that prints my promptline \mbox{\Hypertarget{ui_8c_a5f1b7595f2672ad9842
 \doxysubsubsection{\texorpdfstring{read\_command()}{read\_command()}}
 {\footnotesize\ttfamily char$\ast$ read\+\_\+command (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-function that runs a command for terminal or script \mbox{\Hypertarget{ui_8c_a0287df9d441a819a876e9f2fd7a1b766}\label{ui_8c_a0287df9d441a819a876e9f2fd7a1b766}} 
+function that runs a command for terminal or script \mbox{\Hypertarget{ui_8c_ad20897c5c8bd47f5d4005989bead0e55}\label{ui_8c_ad20897c5c8bd47f5d4005989bead0e55}} 
+\index{ui.c@{ui.c}!reset@{reset}}
+\index{reset@{reset}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+function that resests my key index; \mbox{\Hypertarget{ui_8c_a0287df9d441a819a876e9f2fd7a1b766}\label{ui_8c_a0287df9d441a819a876e9f2fd7a1b766}} 
 \index{ui.c@{ui.c}!set\_status@{set\_status}}
 \index{set\_status@{set\_status}!ui.c@{ui.c}}
 \doxysubsubsection{\texorpdfstring{set\_status()}{set\_status()}}

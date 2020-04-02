@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ui.h" line="28" column="6" bodyfile="ui.c" bodystart="137" bodyend="162" declfile="ui.h" declline="28" declcolumn="6"/>
+        <location file="ui.h" line="28" column="6" bodyfile="ui.c" bodystart="144" bodyend="169" declfile="ui.h" declline="28" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="ui_8h_1a12c8418c957d3b6e44853965b148eb4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>

@@ -139,6 +139,7 @@
     <member refid="ui_8c_1a0287df9d441a819a876e9f2fd7a1b766" kind="function"><name>set_status</name></member>
     <member refid="ui_8c_1ae53c4ac7d02aadd7d3ad0587966cdc22" kind="function"><name>prompt_line1</name></member>
     <member refid="ui_8c_1a7442002cf30c2f3c65c46d2e7f0af0c1" kind="function"><name>prompt_line2</name></member>
+    <member refid="ui_8c_1ad20897c5c8bd47f5d4005989bead0e55" kind="function"><name>reset</name></member>
     <member refid="ui_8c_1a5f1b7595f2672ad9842f962ff050183d" kind="function"><name>read_command</name></member>
   </compound>
   <compound refid="ui_8h" kind="file"><name>ui.h</name>

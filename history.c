@@ -155,6 +155,7 @@ char *hist_search_prefix(char *prefix)
 */
 int hist_search_prefix_to_num(char *prefix)
 {   
+    matchIndex = 0;
     int i;
     if(histStruct.head == 0 && histStruct.tail < histStruct.limit){
         for(i= histStruct.tail -1; i >= 0; i--){
@@ -177,7 +178,7 @@ int hist_search_prefix_to_num(char *prefix)
             }
         }
     }
-    return matchIndex -2;
+    return matchIndex -1;
 }
 
 /**

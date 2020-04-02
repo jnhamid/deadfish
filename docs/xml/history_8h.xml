@@ -150,7 +150,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="15" column="6" bodyfile="history.c" bodystart="196" bodyend="228" declfile="history.h" declline="15" declcolumn="6"/>
+        <location file="history.h" line="15" column="6" bodyfile="history.c" bodystart="197" bodyend="229" declfile="history.h" declline="15" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="history_8h_1a0eb606229fc94b7f7accbec1a6fa0839" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>unsigned int</type>
@@ -167,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="16" column="14" bodyfile="history.c" bodystart="232" bodyend="236" declfile="history.h" declline="16" declcolumn="14"/>
+        <location file="history.h" line="16" column="14" bodyfile="history.c" bodystart="233" bodyend="237" declfile="history.h" declline="16" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="history_8h_1a3b309511777985e50f2743dcccb99b7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -202,7 +202,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="18" column="5" bodyfile="history.c" bodystart="156" bodyend="181" declfile="history.h" declline="18" declcolumn="5"/>
+        <location file="history.h" line="18" column="5" bodyfile="history.c" bodystart="156" bodyend="182" declfile="history.h" declline="18" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="history_8h_1a40248a40aefe5cc5b458543e56282007" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -220,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="history.h" line="19" column="6" bodyfile="history.c" bodystart="186" bodyend="191" declfile="history.h" declline="19" declcolumn="6"/>
+        <location file="history.h" line="19" column="6" bodyfile="history.c" bodystart="187" bodyend="192" declfile="history.h" declline="19" declcolumn="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
